@@ -44,14 +44,15 @@ export default function Game() {
     const selectedIndex = randomValue[0] % players.length;
     const landingAngle = 270 - selectedIndex * (360 / players.length);
     const startRotation = bottleRotationRef.current;
-    const finalRotation = startRotation + 4320 + landingAngle;
-    const duration = 5600;
+    const finalRotation = startRotation + 5760 + landingAngle;
+    const duration = 6800;
     setPhase("spinning");
     const startedAt = performance.now();
     const animate = (now: number) => {
       const progress = Math.min((now - startedAt) / duration, 1);
-      // Strong ease-out: the bottle is fast at the start and slows naturally.
-      const eased = 1 - Math.pow(1 - progress, 4);
+      // Exponential friction: quick at first, then naturally losing momentum.
+      const friction = 5.2;
+      const eased = (1 - Math.exp(-friction * progress)) / (1 - Math.exp(-friction));
       const nextRotation = startRotation + (finalRotation - startRotation) * eased;
       bottleRotationRef.current = nextRotation;
       setBottleRotation(nextRotation);
