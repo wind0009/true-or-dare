@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 type Gender = "Fille" | "Garçon";
 type Player = { name: string; gender: Gender };
@@ -23,6 +23,7 @@ export default function Game() {
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>("setup");
   const [bottleRotation, setBottleRotation] = useState(0);
+  const bottleRotationRef = useRef(0);
 
   const question = useMemo(() => packs[pack][kind][index % packs[pack][kind].length], [pack, kind, index]);
   const wheelGradient = useMemo(() => {
@@ -42,9 +43,22 @@ export default function Game() {
     crypto.getRandomValues(randomValue);
     const selectedIndex = randomValue[0] % players.length;
     const landingAngle = 270 - selectedIndex * (360 / players.length);
+    const startRotation = bottleRotationRef.current;
+    const finalRotation = startRotation + 4320 + landingAngle;
+    const duration = 5600;
     setPhase("spinning");
-    window.setTimeout(() => setBottleRotation((current) => current + 4320 + landingAngle), 80);
-    window.setTimeout(() => { setPlayer(players[selectedIndex]); setPhase("choice"); }, 6100);
+    const startedAt = performance.now();
+    const animate = (now: number) => {
+      const progress = Math.min((now - startedAt) / duration, 1);
+      // Strong ease-out: the bottle is fast at the start and slows naturally.
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const nextRotation = startRotation + (finalRotation - startRotation) * eased;
+      bottleRotationRef.current = nextRotation;
+      setBottleRotation(nextRotation);
+      if (progress < 1) window.requestAnimationFrame(animate);
+      else window.setTimeout(() => { setPlayer(players[selectedIndex]); setPhase("choice"); }, 350);
+    };
+    window.requestAnimationFrame(animate);
   }
 
   function chooseKind(nextKind: Kind) { setKind(nextKind); setIndex((current) => current + 1); setPhase("card"); }
