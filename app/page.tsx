@@ -1,31 +1,21 @@
 "use client";
 import { useMemo, useState } from "react";
 
+type Player = { name: string; gender: "Fille" | "Garçon" };
 type Kind = "Action" | "Vérité";
-const cards = {
-  Action: ["Fais une déclaration d’amour dramatique à la personne à ta droite.", "Laisse le groupe choisir une chanson et danse pendant vingt secondes.", "Imite une personne autour de toi jusqu’à ce que le groupe la reconnaisse.", "Fais le compliment le plus original à la personne de ton choix."],
-  Vérité: ["Quelle est la chose la plus spontanée que tu aies faite ?", "Quelle est la qualité que tu préfères chez les autres ?", "Quel est ton souvenir le plus drôle avec des amis ?", "Quel serait ton rendez-vous parfait ?"],
+const packs = {
+  "Entre amis": { Action: ["Fais une imitation de quelqu’un du groupe jusqu’à ce qu’on devine.", "Laisse le groupe choisir une chanson : danse dessus pendant 20 secondes.", "Fais le compliment le plus original à la personne à ta droite.", "Parle avec un accent choisi par le groupe pour les deux prochains tours."], Vérité: ["Quel est ton plus grand talent inutile ?", "Quelle est la chose la plus drôle qui te soit arrivée cette année ?", "Si tu pouvais échanger ta vie avec quelqu’un ici pendant une journée, qui choisirais-tu ?", "Quel est le dernier mensonge innocent que tu as dit ?"] },
+  Flirt: { Action: ["Fais un compliment sincère à une personne de ton choix.", "Regarde une personne dans les yeux pendant dix secondes sans rire.", "Envoie un emoji qui décrit ton mood à quelqu’un du groupe.", "Choisis une personne et invente votre nom de duo."], Vérité: ["Quelle qualité te fait craquer chez quelqu’un ?", "Quel est le plus beau compliment que tu aies reçu ?", "Quel serait ton rendez-vous parfait ?", "Qu’est-ce qui te met immédiatement de bonne humeur ?"] },
+  Couple: { Action: ["Rejouez ensemble votre premier rendez-vous en trente secondes.", "Fais un massage des épaules de trente secondes à ton partenaire.", "Dis trois choses que tu apprécies chez l’autre.", "Choisissez une chanson qui vous représente et chantez le refrain."], Vérité: ["Quel souvenir de nous te fait le plus sourire ?", "Qu’aimerais-tu refaire ensemble bientôt ?", "Quelle petite habitude de l’autre te fait fondre ?", "Quel voyage rêverais-tu de faire à deux ?"] },
 };
-
 export default function Game() {
-  const [kind, setKind] = useState<Kind>("Action");
-  const [card, setCard] = useState(0);
-  const [turn, setTurn] = useState("Léa");
-  const [count, setCount] = useState(6);
-  const text = useMemo(() => cards[kind][card % cards[kind].length], [kind, card]);
-  const nextCard = (nextKind = kind) => { setKind(nextKind); setCard((value) => value + 1); };
-  const nextTurn = () => { const names = ["Léa", "Alex", "Maya", "Sam", "Lina", "Noah"]; setTurn(names[Math.floor(Math.random() * names.length)]); nextCard(Math.random() > 0.5 ? "Action" : "Vérité"); };
-
-  return <main className="phone-page">
-    <section className="phone-shell">
-      <div className="status"><span>21:41</span><div><i /> <i /> <i className="half" /></div></div>
-      <header className="game-header"><button aria-label="Retour" className="back">‹</button><button className="player-count" onClick={() => setCount((value) => value === 6 ? 5 : 6)}>♟ <b>{count}</b></button></header>
-      <div className="heading"><p>TOUR DE {turn.toUpperCase()}</p><h1>Action ou Vérité ?</h1></div>
-      <article className="challenge-card"><div className={`bubble ${kind.toLowerCase()}`} /><div className={`tag ${kind.toLowerCase()}`}>{kind === "Action" ? "⚡" : "💬"} {kind.toUpperCase()}</div><p>{text}</p><footer><div><small>NIVEAU</small><b>{kind === "Action" ? "Pimenté 🌶️" : "Curieux ✨"}</b></div><span>CARTE&nbsp; {12 + card} / 40</span></footer></article>
-      <p className="choose">Choisis ton camp</p>
-      <div className="choice-grid"><button className={kind === "Vérité" ? "selected truth" : "truth"} onClick={() => nextCard("Vérité")}><span>💬</span>VÉRITÉ</button><button className={kind === "Action" ? "selected action" : "action"} onClick={() => nextCard("Action")}><span>⚡</span>ACTION</button></div>
-      <button className="skip" onClick={nextTurn}>Passer cette carte <b>→</b></button>
-      <div className="home-line" />
-    </section>
-  </main>;
+  const [players, setPlayers] = useState<Player[]>([{ name: "Lina", gender: "Fille" }, { name: "Alex", gender: "Garçon" }, { name: "Maya", gender: "Fille" }, { name: "Sam", gender: "Garçon" }]);
+  const [name, setName] = useState(""); const [gender, setGender] = useState<Player["gender"]>("Fille"); const [pack, setPack] = useState<keyof typeof packs>("Entre amis"); const [player, setPlayer] = useState<Player | null>(players[0]); const [kind, setKind] = useState<Kind>("Vérité"); const [index, setIndex] = useState(0); const [spinning, setSpinning] = useState(false);
+  const question = useMemo(() => packs[pack][kind][index % packs[pack][kind].length], [pack, kind, index]);
+  function spin() { if (spinning || !players.length) return; setSpinning(true); window.setTimeout(() => { setPlayer(players[Math.floor(Math.random() * players.length)]); setKind(Math.random() > .5 ? "Action" : "Vérité"); setIndex((n) => n + 1); setSpinning(false); }, 1050); }
+  function add(e: React.FormEvent) { e.preventDefault(); const clean = name.trim(); if (clean && !players.some((p) => p.name === clean)) { const p = { name: clean, gender }; setPlayers([...players, p]); setPlayer(p); } setName(""); }
+  return <main className="app"><section className="game-shell"><header className="top"><div className="logo">Action <span>ou</span> Vérité</div><div className="session">● Partie en cours</div></header><div className="pack-tabs">{Object.keys(packs).map((p) => <button key={p} onClick={() => { setPack(p as keyof typeof packs); setIndex(0); }} className={pack === p ? "on" : ""}>{p}</button>)}</div>
+    <div className="playground"><p className="turn">LA BOUTEILLE A CHOISI <b>{player?.name || "…"}</b></p><div className={`bottle ${spinning ? "spin" : ""}`}><span className="orbit" /><img src="/assets/spin-bottle.png" alt="Bouteille de jeu" /></div><button className="spin-button" onClick={spin} disabled={spinning}>{spinning ? "La bouteille tourne…" : "Faire tourner"} <span>↻</span></button></div>
+    <div className="challenge"><div className="challenge-tabs"><button className={kind === "Action" ? "active action" : ""} onClick={() => setKind("Action")}>⚡ Action</button><button className={kind === "Vérité" ? "active truth" : ""} onClick={() => setKind("Vérité")}>✦ Vérité</button></div><article className={`card ${kind.toLowerCase()}`}><div className="card-label">{kind === "Action" ? "DÉFI À RELEVER" : "QUESTION À RÉPONDRE"}</div><p>{question}</p><footer><button onClick={() => setIndex((n) => n + 1)}>Passer la carte →</button><span>Tu peux toujours passer.</span></footer></article></div>
+    <section className="players"><div className="players-title"><b>Joueurs</b><span>{players.length} dans la partie</span></div><div className="player-chips">{players.map((p) => <div key={p.name} className={player?.name === p.name ? "picked" : ""}><i className={p.gender === "Fille" ? "pink" : "blue"}>{p.name[0]}</i>{p.name}<button aria-label={`Retirer ${p.name}`} onClick={() => { setPlayers(players.filter((x) => x.name !== p.name)); if (player?.name === p.name) setPlayer(null); }}>×</button></div>)}</div><form onSubmit={add}><input value={name} onChange={(e) => setName(e.target.value)} placeholder="Ajouter un joueur" /><div className="gender-choice"><button type="button" className={gender === "Fille" ? "chosen" : ""} onClick={() => setGender("Fille")}>Fille</button><button type="button" className={gender === "Garçon" ? "chosen" : ""} onClick={() => setGender("Garçon")}>Garçon</button></div><button className="add" aria-label="Ajouter">+</button></form><small>Cette indication sert seulement à adapter certaines cartes.</small></section></section></main>;
 }
