@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 type Gender = "Fille" | "Garçon";
 type Player = { name: string; gender: Gender };
 type Kind = "Action" | "Vérité";
-type Phase = "setup" | "spinning" | "choice" | "card";
+type Phase = "setup" | "wheel" | "spinning" | "choice" | "card";
 
 const packs = {
   "Entre amis": { Action: ["Fais une imitation de quelqu’un du groupe jusqu’à ce qu’on devine.", "Laisse le groupe choisir une chanson : danse dessus pendant 20 secondes.", "Fais le compliment le plus original à la personne à ta droite.", "Parle avec un accent choisi par le groupe pour les deux prochains tours."], Vérité: ["Quel est ton plus grand talent inutile ?", "Quelle est la chose la plus drôle qui te soit arrivée cette année ?", "Si tu pouvais échanger ta vie avec quelqu’un ici pendant une journée, qui choisirais-tu ?", "Quel est le dernier petit mensonge que tu as dit ?"] },
@@ -22,7 +22,7 @@ export default function Game() {
   const [kind, setKind] = useState<Kind>("Action");
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>("setup");
-  const [wheelRotation, setWheelRotation] = useState(0);
+  const [bottleRotation, setBottleRotation] = useState(0);
 
   const question = useMemo(() => packs[pack][kind][index % packs[pack][kind].length], [pack, kind, index]);
   const wheelGradient = useMemo(() => {
@@ -31,14 +31,19 @@ export default function Game() {
     return `conic-gradient(${players.map((_, itemIndex) => `${colors[itemIndex % colors.length]} ${itemIndex * step}deg ${(itemIndex + 1) * step}deg`).join(", ")})`;
   }, [players]);
 
-  function pickPlayer() {
+  function openWheel() {
+    if (players.length < 2) return;
+    setPhase("wheel");
+  }
+
+  function spinBottle() {
     if (players.length < 2) return;
     const randomValue = new Uint32Array(1);
     crypto.getRandomValues(randomValue);
     const selectedIndex = randomValue[0] % players.length;
-    const landingAngle = 360 - selectedIndex * (360 / players.length);
+    const landingAngle = 270 - selectedIndex * (360 / players.length);
     setPhase("spinning");
-    window.setTimeout(() => setWheelRotation((current) => current + 4320 + landingAngle), 80);
+    window.setTimeout(() => setBottleRotation((current) => current + 4320 + landingAngle), 80);
     window.setTimeout(() => { setPlayer(players[selectedIndex]); setPhase("choice"); }, 6100);
   }
 
@@ -50,10 +55,10 @@ export default function Game() {
   return <main className="app"><section className="game-shell">
     <header className="topbar"><div className="brand">Action <em>ou</em> Vérité</div><nav className="pack-tabs" aria-label="Ambiance du jeu">{(Object.keys(packs) as Array<keyof typeof packs>).map((item) => <button key={item} className={pack === item ? "selected" : ""} onClick={() => { setPack(item); setIndex(0); }}>{item}</button>)}</nav><div className="session"><span /> {players.length} joueurs</div></header>
     <section className={`game-area phase-${phase}`}>
-      {phase === "setup" && <div className="stage setup-stage"><div className="stage-mark">✦</div><p className="eyebrow">PRÊT POUR LA PARTIE ?</p><h1>Qui va tomber<br />sur la bouteille ?</h1><p className="stage-copy">Ajoute les joueurs, choisis l’ambiance et laisse le hasard décider du premier tour.</p><button className="primary-button" disabled={players.length < 2} onClick={pickPlayer}>{players.length < 2 ? "Ajoute au moins 2 joueurs" : "Lancer la roue  →"}</button></div>}
-      {phase === "spinning" && <div className="stage spin-stage"><p className="eyebrow">LA ROUE TOURNE</p><div className="table-scene"><div className="pointer">▼</div><div className="wheel"><div className="wheel-disk" style={{ transform: `rotate(${wheelRotation}deg)`, background: wheelGradient }}>{players.map((item, itemIndex) => <span key={item.name} className="wheel-name" style={{ transform: `rotate(${itemIndex * (360 / players.length)}deg) translateY(-104px) rotate(${-itemIndex * (360 / players.length)}deg)` }}>{item.name}</span>)}</div><div className="wheel-hub"><img className="spinning-bottle" src="/assets/spin-bottle.png" alt="Bouteille qui tourne" /></div></div></div><h1>Suspense…</h1><p className="stage-copy">La roue ralentit puis la flèche désigne une personne au hasard.</p></div>}
+      {phase === "setup" && <div className="stage setup-stage"><div className="stage-mark">✦</div><p className="eyebrow">PRÊT POUR LA PARTIE ?</p><h1>Qui va tomber<br />sur la bouteille ?</h1><p className="stage-copy">Ajoute les joueurs, choisis l’ambiance et laisse le hasard décider du premier tour.</p><button className="primary-button" disabled={players.length < 2} onClick={openWheel}>{players.length < 2 ? "Ajoute au moins 2 joueurs" : "Voir la roue  →"}</button></div>}
+      {(phase === "wheel" || phase === "spinning") && <div className="stage spin-stage"><p className="eyebrow">{phase === "wheel" ? "À TOI DE JOUER" : "LA BOUTEILLE TOURNE"}</p><div className="table-scene"><div className="pointer">▼</div><div className="wheel"><div className="wheel-disk" style={{ background: wheelGradient }}>{players.map((item, itemIndex) => <span key={item.name} className="wheel-name" style={{ transform: `rotate(${itemIndex * (360 / players.length)}deg) translateY(-104px) rotate(${-itemIndex * (360 / players.length)}deg)` }}>{item.name}</span>)}</div><div className="wheel-hub"><button className={phase === "spinning" ? "bottle-button is-spinning" : "bottle-button"} onClick={spinBottle} disabled={phase === "spinning"} aria-label="Faire tourner la bouteille" style={{ transform: `rotate(${bottleRotation}deg)` }}><img src="/assets/spin-bottle.png" alt="Bouteille de jeu" /></button></div></div></div><h1>{phase === "wheel" ? "Fais tourner la bouteille" : "Suspense…"}</h1><p className="stage-copy">{phase === "wheel" ? "Clique sur la bouteille : elle choisira le prochain joueur." : "Elle ralentit… qui sera désigné ?"}</p></div>}
       {phase === "choice" && <div className="stage choice-stage"><p className="eyebrow">C’EST TON TOUR</p><div className="chosen-avatar">{player?.name[0]}</div><h1>{player?.name},<br />tu choisis quoi ?</h1><p className="stage-copy">Action ou Vérité ? À toi de décider avant de découvrir la carte.</p><div className="choice-buttons"><button className="truth-choice" onClick={() => chooseKind("Vérité")}><span>💬</span> Vérité</button><button className="action-choice" onClick={() => chooseKind("Action")}><span>⚡</span> Action</button></div></div>}
-      {phase === "card" && <div className="stage card-stage"><div className="turn-line"><span>Tour de</span><strong>{player?.name}</strong></div><h1>{kind} !</h1><article className={`challenge-card ${kind === "Action" ? "action-card" : "truth-card"}`}><div className="card-topline"><span>{kind === "Action" ? "⚡" : "💬"}</span> {kind}</div><p>{question}</p><div className="card-foot"><div><small>NIVEAU</small><b>{level}</b></div><small>CARTE {String((index % 40) + 1).padStart(2, "0")} / 40</small></div></article><button className="skip-button" onClick={pickPlayer}>Tour suivant  →</button></div>}
+      {phase === "card" && <div className="stage card-stage"><div className="turn-line"><span>Tour de</span><strong>{player?.name}</strong></div><h1>{kind} !</h1><article className={`challenge-card ${kind === "Action" ? "action-card" : "truth-card"}`}><div className="card-topline"><span>{kind === "Action" ? "⚡" : "💬"}</span> {kind}</div><p>{question}</p><div className="card-foot"><div><small>NIVEAU</small><b>{level}</b></div><small>CARTE {String((index % 40) + 1).padStart(2, "0")} / 40</small></div></article><button className="skip-button" onClick={openWheel}>Tour suivant  →</button></div>}
     </section>
     <aside className="players-panel"><div className="players-heading"><div><span>{phase === "setup" ? "PRÉPAREZ LA PARTIE" : "PARTIE EN COURS"}</span><h2>Les joueurs</h2></div><b>{players.length}</b></div><div className="player-list">{players.map((item) => <div className={player?.name === item.name ? "player active" : "player"} key={item.name}><i className={item.gender === "Fille" ? "girl" : "boy"}>{item.name[0]}</i><span>{item.name}</span><small>{item.gender}</small><button onClick={() => removePlayer(item)} aria-label={`Retirer ${item.name}`}>×</button></div>)}</div><form onSubmit={addPlayer} className="add-player"><label htmlFor="player-name">Ajouter un joueur</label><div><input id="player-name" value={name} onChange={(event) => setName(event.target.value)} placeholder="Son prénom" /><button type="submit">+</button></div><div className="gender-choice"><button type="button" className={gender === "Fille" ? "chosen" : ""} onClick={() => setGender("Fille")}>Fille</button><button type="button" className={gender === "Garçon" ? "chosen" : ""} onClick={() => setGender("Garçon")}>Garçon</button></div></form><p className="privacy-note">Le genre aide seulement à adapter certaines cartes.</p></aside>
   </section></main>;
