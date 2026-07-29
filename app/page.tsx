@@ -34,11 +34,11 @@ export default function Game() {
     const sliceAngle = 360 / players.length;
     const landingAngle = 360 - selectedIndex * sliceAngle;
     setPhase("spinning");
-    setWheelRotation((current) => current + 2160 + landingAngle);
+    setWheelRotation((current) => current + 4320 + landingAngle);
     window.setTimeout(() => {
       setPlayer(players[selectedIndex]);
       setPhase("choice");
-    }, 2800);
+    }, 5600);
   }
   function chooseKind(nextKind: Kind) { setKind(nextKind); setIndex((current) => current + 1); setPhase("card"); }
   function addPlayer(event: React.FormEvent) { event.preventDefault(); const cleanName = name.trim(); if (!cleanName || players.some((item) => item.name.toLowerCase() === cleanName.toLowerCase())) return; setPlayers((items) => [...items, { name: cleanName, gender }]); setName(""); }
