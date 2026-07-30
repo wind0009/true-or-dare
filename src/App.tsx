@@ -28,12 +28,7 @@ export default function App() {
         }
       }
     } catch (e) {}
-    return [
-      { id: 'p1', name: 'Léa', avatar: '👑', color: '#ec4899', gender: 'female', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-      { id: 'p2', name: 'Alex', avatar: '😎', color: '#f97316', gender: 'male', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-      { id: 'p3', name: 'Maya', avatar: '🔥', color: '#a855f7', gender: 'female', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-      { id: 'p4', name: 'Thomas', avatar: '🕺', color: '#3b82f6', gender: 'male', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-    ];
+    return [];
   });
 
   useEffect(() => {
@@ -47,7 +42,7 @@ export default function App() {
   const [intensity, setIntensity] = useState<IntensityLevel>('soft');
 
   // Game lifecycle state
-  const [gameState, setGameState] = useState<GameState>('SPINNING');
+  const [gameState, setGameState] = useState<GameState>('SETUP_PLAYERS');
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [currentCard, setCurrentCard] = useState<CardItem | null>(null);
@@ -107,7 +102,7 @@ export default function App() {
         players={players}
         soundEnabled={soundEnabled}
         setSoundEnabled={setSoundEnabled}
-        onGoHome={() => setGameState('SELECT_MODE')}
+        onGoHome={() => setGameState('SETUP_PLAYERS')}
       />
 
       {/* Main Grid */}
