@@ -217,8 +217,7 @@ export const getSmartCard = (
     targetPartner = selectCompatiblePartner(currentPlayer, allPlayers, mode);
 
     if (targetPartner) {
-      const partnerGenderSymbol = targetPartner.gender === 'male' ? '👨' : targetPartner.gender === 'female' ? '👩' : '✨';
-      const partnerNameFormatted = `**${targetPartner.name} ${partnerGenderSymbol}**`;
+      const partnerNameFormatted = `**${targetPartner.name}**`;
 
       // Replace explicit target placeholders naturally
       const targetRegex = /\{target\}|\{TARGET\}|\{PARTENAIRE\}|la personne de ton choix|une personne volontaire|une personne de ton choix|un autre joueur|un joueur autour de la table/gi;
@@ -237,4 +236,3 @@ export const getSmartCard = (
     targetPartner: targetPartner || undefined,
   };
 };
-

@@ -55,16 +55,6 @@ export const PlayersSidebar: React.FC<PlayersSidebarProps> = ({
     onUpdatePlayers(players.filter((p) => p.id !== id));
   };
 
-  const getGenderIcon = (g?: Gender) => {
-    switch (g) {
-      case 'male':
-        return '👨';
-      case 'female':
-      default:
-        return '👩';
-    }
-  };
-
   return (
     <div className="w-full bg-white text-slate-900 rounded-3xl p-5 sm:p-6 shadow-2xl flex flex-col justify-between border border-slate-100">
       
@@ -125,7 +115,7 @@ export const PlayersSidebar: React.FC<PlayersSidebarProps> = ({
                   newPlayerGender === 'female' ? 'bg-pink-100 border-pink-400 text-pink-700' : 'bg-white border-slate-200 text-slate-600'
                 }`}
               >
-                Femme 👩
+                Femme
               </button>
               <button
                 type="button"
@@ -134,7 +124,7 @@ export const PlayersSidebar: React.FC<PlayersSidebarProps> = ({
                   newPlayerGender === 'male' ? 'bg-blue-100 border-blue-400 text-blue-700' : 'bg-white border-slate-200 text-slate-600'
                 }`}
               >
-                Homme 👨
+                Homme
               </button>
             </div>
           </form>
@@ -161,7 +151,6 @@ export const PlayersSidebar: React.FC<PlayersSidebarProps> = ({
                   
                   <span className="text-base">{player.avatar}</span>
                   <span className="truncate max-w-[100px]">{player.name}</span>
-                  <span className="text-xs">{getGenderIcon(player.gender)}</span>
                 </div>
 
                 <div className="flex items-center gap-2">

@@ -76,10 +76,10 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
   const getGenderBadge = (g: Gender) => {
     switch (g) {
       case 'male':
-        return { label: 'Homme 👨', color: 'bg-blue-500/20 text-blue-300 border-blue-500/30' };
+        return { label: 'Homme', color: 'bg-blue-500/20 text-blue-300 border-blue-500/30' };
       case 'female':
       default:
-        return { label: 'Femme 👩', color: 'bg-pink-500/20 text-pink-300 border-pink-500/30' };
+        return { label: 'Femme', color: 'bg-pink-500/20 text-pink-300 border-pink-500/30' };
     }
   };
 
@@ -134,7 +134,7 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
                     : 'bg-slate-950 text-slate-400 border-slate-800 hover:bg-slate-800'
                 }`}
               >
-                Femme 👩
+                Femme
               </button>
               <button
                 type="button"
@@ -145,7 +145,7 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
                     : 'bg-slate-950 text-slate-400 border-slate-800 hover:bg-slate-800'
                 }`}
               >
-                Homme 👨
+                Homme
               </button>
             </div>
           </div>
