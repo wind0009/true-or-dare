@@ -44,7 +44,7 @@ export default function App() {
 
   // Mode & Intensity
   const [selectedMode, setSelectedMode] = useState<GameMode>(GAME_MODES[0]); // Amis
-  const [intensity, setIntensity] = useState<IntensityLevel>('medium');
+  const [intensity, setIntensity] = useState<IntensityLevel>('soft');
 
   // Game lifecycle state
   const [gameState, setGameState] = useState<GameState>('SPINNING');

@@ -46,9 +46,9 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose }) => {
                 1
               </div>
               <div>
-                <h4 className="font-extrabold text-white text-sm">Le Tour de Bouteille 🍾</h4>
+                <h4 className="font-extrabold text-white text-sm">La Roue des Prénoms 🎡</h4>
                 <p className="text-slate-400 text-xs mt-0.5">
-                  Clique sur la bouteille pour la faire tourner. Quand elle s'arrête, son goulot indique le joueur désigné pour le tour !
+                  Clique sur la roue pour la faire tourner. Quand elle s'arrête, l'aiguille indique le joueur désigné pour le tour !
                 </p>
               </div>
             </div>

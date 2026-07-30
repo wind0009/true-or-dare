@@ -119,16 +119,16 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
           <span>Niveau d'intensité des défis :</span>
         </label>
 
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <button
             type="button"
             onClick={() => {
               sound.playClick();
               onSelectIntensity('soft');
             }}
-            className={`py-2 px-3 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+            className={`py-2 px-2.5 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1 ${
               selectedIntensity === 'soft'
-                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500'
+                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500 shadow-md shadow-emerald-500/10'
                 : 'bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800'
             }`}
           >
@@ -139,30 +139,45 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
             type="button"
             onClick={() => {
               sound.playClick();
-              onSelectIntensity('medium');
+              onSelectIntensity('hot');
             }}
-            className={`py-2 px-3 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-              selectedIntensity === 'medium'
-                ? 'bg-amber-500/20 text-amber-300 border-amber-500'
+            className={`py-2 px-2.5 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1 ${
+              selectedIntensity === 'hot'
+                ? 'bg-pink-500/20 text-pink-300 border-pink-500 shadow-md shadow-pink-500/10'
                 : 'bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800'
             }`}
           >
-            <span>🟡 Modéré</span>
+            <span>🌶️ Hot</span>
           </button>
 
           <button
             type="button"
             onClick={() => {
               sound.playClick();
-              onSelectIntensity('spicy');
+              onSelectIntensity('hard');
             }}
-            className={`py-2 px-3 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-              selectedIntensity === 'spicy'
-                ? 'bg-rose-500/20 text-rose-300 border-rose-500'
+            className={`py-2 px-2.5 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1 ${
+              selectedIntensity === 'hard'
+                ? 'bg-orange-500/20 text-orange-300 border-orange-500 shadow-md shadow-orange-500/10'
                 : 'bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800'
             }`}
           >
-            <span>🔥 Pimenté</span>
+            <span>🔥 Hard</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              sound.playClick();
+              onSelectIntensity('extreme');
+            }}
+            className={`py-2 px-2.5 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1 ${
+              selectedIntensity === 'extreme'
+                ? 'bg-purple-500/20 text-purple-300 border-purple-500 shadow-md shadow-purple-500/10'
+                : 'bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800'
+            }`}
+          >
+            <span>💀 Extreme</span>
           </button>
         </div>
       </div>
@@ -177,7 +192,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
         className="w-full py-4 rounded-2xl bg-gradient-to-r from-rose-500 via-purple-600 to-indigo-600 hover:opacity-95 text-white font-extrabold text-base shadow-xl shadow-rose-500/25 flex items-center justify-center gap-2 transition-all active:scale-98"
       >
         <Play className="w-5 h-5 fill-current" />
-        <span>Lancer la bouteille ! 🍾</span>
+        <span>Tourner la roue ! 🎡</span>
       </button>
 
     </div>

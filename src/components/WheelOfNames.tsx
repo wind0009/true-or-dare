@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { RotateCw, Sparkles, Trophy } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { Player } from '../types';
 import { sound } from '../utils/sound';
@@ -460,21 +459,6 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
         </div>
 
       </div>
-
-      {/* Action Button */}
-      <button
-        id="spin-wheel-btn"
-        disabled={isSpinning || numPlayers < 2}
-        onClick={() => spinWheel()}
-        className={`mt-4 w-full max-w-xs py-3.5 px-6 rounded-2xl font-extrabold text-sm sm:text-base shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2.5 ${
-          isSpinning
-            ? 'bg-slate-800 text-slate-500 border border-slate-700 cursor-not-allowed'
-            : 'bg-gradient-to-r from-rose-500 via-purple-600 to-indigo-600 hover:from-rose-600 hover:to-indigo-700 text-white shadow-rose-500/30 border border-rose-400/30 hover:shadow-rose-500/50'
-        }`}
-      >
-        <RotateCw className={`w-5 h-5 ${isSpinning ? 'animate-spin' : ''}`} />
-        <span>{isSpinning ? 'Roue en cours...' : 'TOURNER LA ROUE ! 🎡'}</span>
-      </button>
 
     </div>
   );

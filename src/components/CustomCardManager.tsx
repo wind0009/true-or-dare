@@ -26,7 +26,7 @@ export const CustomCardManager: React.FC<CustomCardManagerProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<'manual' | 'ai'>('manual');
   const [cardType, setCardType] = useState<CardType>('truth');
-  const [intensity, setIntensity] = useState<IntensityLevel>('medium');
+  const [intensity, setIntensity] = useState<IntensityLevel>('soft');
   const [textInput, setTextInput] = useState('');
 
   // AI Prompt controls

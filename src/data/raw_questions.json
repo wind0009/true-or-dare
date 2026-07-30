@@ -1,66 +1,1325 @@
 [
-  { "id": 1, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à un voyage ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 2, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à la cuisine ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 3, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à l’école ou le travail ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 4, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à une fête ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 5, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à la musique ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 6, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à un film ou une série ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 7, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à ton enfance ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 8, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à les réseaux sociaux ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 9, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à le sport ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 10, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quel souvenir te fait encore sourire quand tu repenses à les animaux ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 11, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de un voyage ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 12, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de la cuisine ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 13, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de l’école ou le travail ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 14, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de une fête ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 15, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de la musique ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 16, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de un film ou une série ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 17, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de ton enfance ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 18, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de les réseaux sociaux ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 19, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de le sport ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 20, "type": "truth", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Quelle petite habitude as-tu lorsqu’il est question de les animaux ?", "tags": ["léger", "conversation", "difficulté-1"] },
-  { "id": 21, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de un voyage ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 22, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de la cuisine ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 23, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de l’école ou le travail ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 24, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de une fête ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 25, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de la musique ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 26, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de un film ou une série ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 27, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de ton enfance ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 28, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de les réseaux sociaux ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 29, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de le sport ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 30, "type": "truth", "category": "soft", "difficulty": 2, "age_rating": "13+", "text": "Quelle opinion impopulaire assumes-tu à propos de les animaux ?", "tags": ["léger", "conversation", "difficulté-2"] },
-  { "id": 101, "type": "dare", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Pendant vingt secondes, raconte ton dernier repas.", "tags": ["amusant", "créatif", "difficulté-1"] },
-  { "id": 102, "type": "dare", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Pendant vingt secondes, raconte un animal choisi par le groupe.", "tags": ["amusant", "créatif", "difficulté-1"] },
-  { "id": 103, "type": "dare", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Pendant vingt secondes, raconte un objet visible dans la pièce.", "tags": ["amusant", "créatif", "difficulté-1"] },
-  { "id": 111, "type": "dare", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Mime sans parler ton dernier repas.", "tags": ["amusant", "créatif", "difficulté-1"] },
-  { "id": 112, "type": "dare", "category": "soft", "difficulty": 1, "age_rating": "13+", "text": "Mime sans parler un animal choisi par le groupe.", "tags": ["amusant", "créatif", "difficulté-1"] },
-  { "id": 151, "type": "dare", "category": "soft", "difficulty": 3, "age_rating": "13+", "text": "Fais une imitation bienveillante de ton dernier repas.", "tags": ["amusant", "créatif", "difficulté-3"] },
-  { "id": 201, "type": "truth", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Qu’est-ce qui te charme le plus chez quelqu’un lorsqu’il s’agit de un premier rendez-vous ?", "tags": ["flirt", "intimité", "consentement", "difficulté-1"] },
-  { "id": 202, "type": "truth", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Qu’est-ce qui te charme le plus chez quelqu’un lorsqu’il s’agit de un échange de regards ?", "tags": ["flirt", "intimité", "consentement", "difficulté-1"] },
-  { "id": 203, "type": "truth", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Qu’est-ce qui te charme le plus chez quelqu’un lorsqu’il s’agit de une conversation intime ?", "tags": ["flirt", "intimité", "consentement", "difficulté-1"] },
-  { "id": 204, "type": "truth", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Qu’est-ce qui te charme le plus chez quelqu’un lorsqu’il s’agit de une soirée romantique ?", "tags": ["flirt", "intimité", "consentement", "difficulté-1"] },
-  { "id": 205, "type": "truth", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Qu’est-ce qui te charme le plus chez quelqu’un lorsqu’il s’agit de un flirt par messages ?", "tags": ["flirt", "intimité", "consentement", "difficulté-1"] },
-  { "id": 206, "type": "truth", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Qu’est-ce qui te charme le plus chez quelqu’un lorsqu’il s’agit de un baiser ?", "tags": ["flirt", "intimité", "consentement", "difficulté-1"] },
-  { "id": 231, "type": "truth", "category": "hot", "difficulty": 2, "age_rating": "18+", "text": "Quelle attention te fait te sentir désiré·e dans un premier rendez-vous ?", "tags": ["flirt", "intimité", "consentement", "difficulté-2"] },
-  { "id": 236, "type": "truth", "category": "hot", "difficulty": 2, "age_rating": "18+", "text": "Quelle attention te fait te sentir désiré·e dans un baiser ?", "tags": ["flirt", "intimité", "consentement", "difficulté-2"] },
-  { "id": 301, "type": "dare", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Avec son accord, adresse à la personne de ton choix un compliment sincère sur son style.", "tags": ["flirt", "romantique", "consentement", "difficulté-1"] },
-  { "id": 302, "type": "dare", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Avec son accord, adresse à la personne de ton choix une phrase romantique digne d’un film.", "tags": ["flirt", "romantique", "consentement", "difficulté-1"] },
-  { "id": 303, "type": "dare", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Avec son accord, adresse à la personne de ton choix une invitation élégante à danser.", "tags": ["flirt", "romantique", "consentement", "difficulté-1"] },
-  { "id": 305, "type": "dare", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Avec son accord, adresse à la personne de ton choix une idée de rendez-vous original.", "tags": ["flirt", "romantique", "consentement", "difficulté-1"] },
-  { "id": 306, "type": "dare", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Avec son accord, adresse à la personne de ton choix un message de flirt léger et respectueux.", "tags": ["flirt", "romantique", "consentement", "difficulté-1"] },
-  { "id": 310, "type": "dare", "category": "hot", "difficulty": 1, "age_rating": "18+", "text": "Avec son accord, adresse à la personne de ton choix une façon claire et séduisante de demander un baiser.", "tags": ["flirt", "romantique", "consentement", "difficulté-1"] },
-  { "id": 331, "type": "dare", "category": "hot", "difficulty": 2, "age_rating": "18+", "text": "Regarde une personne volontaire dans les yeux puis formule un compliment sincère sur son style.", "tags": ["flirt", "romantique", "consentement", "difficulté-2"] },
-  { "id": 332, "type": "dare", "category": "hot", "difficulty": 2, "age_rating": "18+", "text": "Regarde une personne volontaire dans les yeux puis formule une phrase romantique digne d’un film.", "tags": ["flirt", "romantique", "consentement", "difficulté-2"] },
-  { "id": 361, "type": "dare", "category": "hot", "difficulty": 4, "age_rating": "18+", "text": "Demande d’abord son consentement, puis offre à une personne volontaire un compliment sincère sur son style.", "tags": ["flirt", "romantique", "consentement", "difficulté-4"] },
-  { "id": 371, "type": "dare", "category": "hot", "difficulty": 4, "age_rating": "18+", "text": "Joue pendant trente secondes la scène d’un flirt fictif comprenant un compliment sincère sur son style.", "tags": ["flirt", "romantique", "consentement", "difficulté-4"] },
-  { "id": 401, "type": "truth", "category": "extreme", "difficulty": 1, "age_rating": "16+", "text": "Quelle vérité difficile as-tu apprise sur toi-même grâce à une amitié terminée ?", "tags": ["intense", "réflexion", "difficulté-1"] },
-  { "id": 403, "type": "truth", "category": "extreme", "difficulty": 1, "age_rating": "16+", "text": "Quelle vérité difficile as-tu apprise sur toi-même grâce à un échec important ?", "tags": ["intense", "réflexion", "difficulté-1"] },
-  { "id": 411, "type": "truth", "category": "extreme", "difficulty": 1, "age_rating": "16+", "text": "Quelle peur profonde influence encore ta manière d’aborder une amitié terminée ?", "tags": ["intense", "réflexion", "difficulté-1"] },
-  { "id": 415, "type": "truth", "category": "extreme", "difficulty": 1, "age_rating": "16+", "text": "Quelle peur profonde influence encore ta manière d’aborder ton avenir ?", "tags": ["intense", "réflexion", "difficulté-1"] },
-  { "id": 441, "type": "truth", "category": "extreme", "difficulty": 3, "age_rating": "16+", "text": "Quelle conversation évites-tu depuis trop longtemps au sujet de une amitié terminée ?", "tags": ["intense", "réflexion", "difficulté-3"] },
-  { "id": 501, "type": "dare", "category": "extreme", "difficulty": 1, "age_rating": "16+", "text": "Pendant une minute, défends avec conviction une chaussette solitaire.", "tags": ["courage", "improvisation", "sans-danger", "difficulté-1"] },
-  { "id": 506, "type": "dare", "category": "extreme", "difficulty": 1, "age_rating": "16+", "text": "Pendant une minute, défends avec conviction une journée sans téléphone.", "tags": ["courage", "improvisation", "sans-danger", "difficulté-1"] },
-  { "id": 510, "type": "dare", "category": "extreme", "difficulty": 1, "age_rating": "16+", "text": "Pendant une minute, défends avec conviction un super-pouvoir parfaitement inutile.", "tags": ["courage", "improvisation", "sans-danger", "difficulté-1"] },
-  { "id": 541, "type": "dare", "category": "extreme", "difficulty": 3, "age_rating": "16+", "text": "Joue une scène muette représentant une chaussette solitaire.", "tags": ["courage", "improvisation", "sans-danger", "difficulté-3"] },
-  { "id": 581, "type": "dare", "category": "extreme", "difficulty": 5, "age_rating": "16+", "text": "Transforme en bande-annonce dramatique une chaussette solitaire.", "tags": ["courage", "improvisation", "sans-danger", "difficulté-5"] }
+  {
+    "id": 1,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est le pire plat que tu aies cuisiné ou mangé de ta vie ?",
+    "tags": ["cuisine", "anecdote", "marrant"]
+  },
+  {
+    "id": 2,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Raconte la plus grande honte de ta vie devant tout le monde !",
+    "tags": ["anecdote", "honte", "rigolo"]
+  },
+  {
+    "id": 3,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Si tu gagnais 1 million d'euros demain, quelle est la première chose ridicule que tu achèterais ?",
+    "tags": ["argent", "rêve", "drôle"]
+  },
+  {
+    "id": 4,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle est la pire excuse que tu aies utilisée pour annuler une soirée ?",
+    "tags": ["mensonge", "soirée", "potes"]
+  },
+  {
+    "id": 5,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Si tu devais échanger ta vie avec un joueur autour de la table pendant 24h, qui choisirais-tu et pourquoi ?",
+    "tags": ["groupe", "choix", "amitié"]
+  },
+  {
+    "id": 6,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est ton plus grand plaisir coupable (chanson houlà, série ridicule, habitude bizarre) ?",
+    "tags": ["secret", "musique", "habitudes"]
+  },
+  {
+    "id": 7,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "As-tu déjà fait tomber de la nourriture par terre et l'as-tu mangée en secret ?",
+    "tags": ["nourriture", "secret"]
+  },
+  {
+    "id": 8,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est le mensonge le plus bête que tu aies raconté à tes parents ?",
+    "tags": ["enfance", "mensonge"]
+  },
+  {
+    "id": 9,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Si tu devais rester bloqué(e) dans un ascenseur pendant 5h avec l'un des joueurs, qui choisirais-tu ?",
+    "tags": ["groupe", "amitié"]
+  },
+  {
+    "id": 10,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle est la dernière recherche bizarre ou ridicule dans ton téléphone ?",
+    "tags": ["téléphone", "curieux"]
+  },
+  {
+    "id": 11,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "As-tu déjà prétendu aimer un cadeau alors que tu le trouvais affreux ?",
+    "tags": ["cadeau", "politesse"]
+  },
+  {
+    "id": 12,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Si tu devais choisir un super-pouvoir complètement inutile, lequel ce serait ?",
+    "tags": ["imagination", "humour"]
+  },
+  {
+    "id": 13,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle est la phobie la plus bizarre ou irrationnelle que tu aies ?",
+    "tags": ["peur", "insolite"]
+  },
+  {
+    "id": 14,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est le surnom le plus embarrassant qu'on t'ait donné ?",
+    "tags": ["surnom", "enfance"]
+  },
+  {
+    "id": 15,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle est la chanson que tu chantes à tue-tête quand tu es seul(e) sous la douche ?",
+    "tags": ["musique", "douche"]
+  },
+  {
+    "id": 16,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quel est ton « red flag » (signal d’alarme) le plus inattendu chez quelqu'un ?",
+    "tags": ["redflag", "relation", "vérité"]
+  },
+  {
+    "id": 17,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle est la seule chose étrange que tu fais uniquement quand tu es tout(e) seul(e) chez toi ?",
+    "tags": ["secret", "habitude"]
+  },
+  {
+    "id": 18,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quelle est la seule chose importante que tu aimerais que les gens sachent vraiment sur toi ?",
+    "tags": ["confidence", "personnel"]
+  },
+  {
+    "id": 19,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quel crime totalement inoffensif commettrais-tu si tu savais que tu ne te ferais jamais prendre ?",
+    "tags": ["humour", "secret"]
+  },
+  {
+    "id": 20,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 3,
+    "age_rating": "13+",
+    "text": "Quel est ton plus grand regret dans la vie jusqu'à présent ?",
+    "tags": ["regret", "profond"]
+  },
+  {
+    "id": 21,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel a été le plus beau jour de ta vie et pourquoi ?",
+    "tags": ["bonheur", "souvenir"]
+  },
+  {
+    "id": 22,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quel a été le jour le plus difficile ou le pire jour de ta vie ?",
+    "tags": ["épreuve", "émotion"]
+  },
+  {
+    "id": 23,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Quelle est la raison la plus mesquine pour laquelle tu as déjà mis fin à une relation ?",
+    "tags": ["rupture", "anecdote"]
+  },
+  {
+    "id": 24,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Pour quelle raison particulière as-tu le plus peur que les autres te jugent ?",
+    "tags": ["peur", "regard"]
+  },
+  {
+    "id": 25,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est le compliment que tu préfères recevoir au monde ?",
+    "tags": ["compliment", "estime"]
+  },
+  {
+    "id": 26,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Qu’est-ce qui te fait immédiatement dire « beurk » dans la vie de tous les jours ?",
+    "tags": ["dégoût", "humour"]
+  },
+  {
+    "id": 27,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel a été ton premier coup de cœur ou 'crush' pour une personne célèbre ?",
+    "tags": ["crush", "célébrité"]
+  },
+  {
+    "id": 28,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle est la chose la plus unique ou bizarre que tu aies jamais mangée ?",
+    "tags": ["nourriture", "expérience"]
+  },
+  {
+    "id": 29,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Si tu devais participer à une émission de télé-réalité, laquelle serait-ce ?",
+    "tags": ["tv", "humour"]
+  },
+  {
+    "id": 30,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Raconte ton pire premier rendez-vous (date) de tous les temps !",
+    "tags": ["date", "fiasco"]
+  },
+  {
+    "id": 31,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "À quelle tendance de mode embarrassante as-tu déjà participé plus jeune ?",
+    "tags": ["mode", "honte"]
+  },
+  {
+    "id": 32,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est le film le plus embarrassant que tu considères pourtant comme l'un de tes préférés ?",
+    "tags": ["cinema", "secret"]
+  },
+  {
+    "id": 33,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle est la chanson la plus inattendue ou embarrassante qui était dans tes favoris Spotify l'année dernière ?",
+    "tags": ["musique", "secret"]
+  },
+  {
+    "id": 34,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est le pire cadeau qu'on t'ait jamais offert de toute ta vie ?",
+    "tags": ["cadeau", "anecdote"]
+  },
+  {
+    "id": 35,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est le meilleur conseil qu'on t'ait jamais donné ?",
+    "tags": ["sagesse", "conseil"]
+  },
+  {
+    "id": 36,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quand as-tu pleuré pour la dernière fois et pourquoi ?",
+    "tags": ["émotion", "sincérité"]
+  },
+  {
+    "id": 37,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Si tu pouvais faire absolument n'importe quel travail au monde sans limite d'argent, quel serait-il ?",
+    "tags": ["rêve", "métier"]
+  },
+  {
+    "id": 38,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Si tu n'avais plus jamais besoin de travailler de ta vie, comment passerais-tu tes journées ?",
+    "tags": ["passion", "futur"]
+  },
+  {
+    "id": 39,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quel est le plus grand secret que tu as caché à tes parents pendant des années ?",
+    "tags": ["secret", "famille"]
+  },
+  {
+    "id": 40,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Quelle est la chose la plus illégale ou borderline que tu aies jamais faite ?",
+    "tags": ["secret", "audace"]
+  },
+  {
+    "id": 41,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Raconte ton tout dernier rêve étrange ou marquant !",
+    "tags": ["rêve", "nuit"]
+  },
+  {
+    "id": 42,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est ton meilleur souvenir de ton enfance ?",
+    "tags": ["enfance", "souvenir"]
+  },
+  {
+    "id": 43,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel était le pire style vestimentaire ou la coupe de cheveux la plus ridicule que tu as eue plus jeune ?",
+    "tags": ["look", "honte"]
+  },
+  {
+    "id": 44,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est le mot que tu as mal prononcé pendant des années sans t'en rendre compte ?",
+    "tags": ["langue", "drôle"]
+  },
+  {
+    "id": 45,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quel est le souvenir de ton enfance qui reflète le mieux la personne que tu es devenu(e) aujourd'hui ?",
+    "tags": ["enfance", "personnalité"]
+  },
+  {
+    "id": 46,
+    "type": "truth",
+    "category": "soft",
+    "difficulty": 3,
+    "age_rating": "13+",
+    "text": "Raconte un moment de ton passé où tu t'es senti(e) particulièrement incompris(e) ou seul(e).",
+    "tags": ["émotion", "vérité"]
+  },
+  {
+    "id": 101,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Imite le cri de 3 animaux différents de manière hyper dramatique !",
+    "tags": ["imitation", "animaux", "drôle"]
+  },
+  {
+    "id": 102,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Parle avec un accent marseillais ou québécois jusqu'au prochain tour !",
+    "tags": ["accent", "impro"]
+  },
+  {
+    "id": 103,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Fais 10 squats ou 10 pompes en scandant ton propre prénom à haute voix !",
+    "tags": ["sport", "énergie"]
+  },
+  {
+    "id": 104,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Raconte une blague courte très nulle sans avoir le droit de sourire !",
+    "tags": ["blague", "défi"]
+  },
+  {
+    "id": 105,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Fais une imitation amusante et bienveillante d'un des joueurs autour de la table !",
+    "tags": ["imitation", "potes"]
+  },
+  {
+    "id": 106,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Fais semblant d'être un présentateur TV qui annonce une invasion d'extraterrestres !",
+    "tags": ["théâtre", "impro"]
+  },
+  {
+    "id": 107,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Mime ton activité préférée sans parler jusqu'à ce que les autres devinent !",
+    "tags": ["mime", "devinette"]
+  },
+  {
+    "id": 108,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Chante le refrain de ta chanson préférée comme si tu étais un chanteur d'opéra !",
+    "tags": ["chant", "opéra"]
+  },
+  {
+    "id": 109,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Reste figé(e) comme une statue de musée pendant 30 secondes !",
+    "tags": ["statue", "calme"]
+  },
+  {
+    "id": 110,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Fais un compliment sincère et original au joueur assis à ta gauche.",
+    "tags": ["compliment", "gentillesse"]
+  },
+  {
+    "id": 111,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Mange une cuillerée de n'importe quel condiment doux dans le réfrigérateur !",
+    "tags": ["cuisine", "gage"]
+  },
+  {
+    "id": 112,
+    "type": "dare",
+    "category": "soft",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Fais ta meilleure imitation d'une célébrité connue !",
+    "tags": ["imitation", "star"]
+  },
+  {
+    "id": 201,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Qu'est-ce qui t'a le plus séduit(e) chez {PARTENAIRE} au premier coup d'œil ?",
+    "tags": ["séduction", "flirt", "romantique"]
+  },
+  {
+    "id": 202,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Quelle partie du corps de {PARTENAIRE} préfères-tu le plus ?",
+    "tags": ["corps", "charme"]
+  },
+  {
+    "id": 203,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Quelle chose ou comportement t'excite le plus chez quelqu'un ?",
+    "tags": ["séduction", "désir"]
+  },
+  {
+    "id": 204,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "As-tu des fétiches ou des envies particulières que {PARTENAIRE} ignore encore ?",
+    "tags": ["fantasme", "secret"]
+  },
+  {
+    "id": 205,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "À qui as-tu donné ton tout premier baiser dans ta vie ?",
+    "tags": ["baiser", "souvenir"]
+  },
+  {
+    "id": 206,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Quand a eu lieu ta toute première fois ?",
+    "tags": ["intimité", "souvenir"]
+  },
+  {
+    "id": 207,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "Quand t'es-tu masturbé(e) pour la toute dernière fois ?",
+    "tags": ["intimité", "secret"]
+  },
+  {
+    "id": 208,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "As-tu déjà trompé quelqu'un dans une relation passée ?",
+    "tags": ["relation", "vérité"]
+  },
+  {
+    "id": 209,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "Quel est l'endroit le plus insolite ou fou où tu aies fait l'amour ?",
+    "tags": ["insolite", "aventure"]
+  },
+  {
+    "id": 210,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Quel vêtement de la garde-robe de {PARTENAIRE} trouves-tu le plus sexy ?",
+    "tags": ["style", "sexy"]
+  },
+  {
+    "id": 211,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 4,
+    "age_rating": "18+",
+    "text": "Quel est l’acte sexuel que tu préfères recevoir au lit ?",
+    "tags": ["plaisir", "intimité"]
+  },
+  {
+    "id": 212,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 4,
+    "age_rating": "18+",
+    "text": "Quel est l’acte sexuel que tu préfères offrir à ton/ta partenaire ?",
+    "tags": ["plaisir", "don"]
+  },
+  {
+    "id": 213,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "Quelle est ta position sexuelle préférée au monde ?",
+    "tags": ["position", "plaisir"]
+  },
+  {
+    "id": 214,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 4,
+    "age_rating": "18+",
+    "text": "Quel sextoy voudrais-tu à tout prix essayer avec {PARTENAIRE} ?",
+    "tags": ["sextoy", "fantasme"]
+  },
+  {
+    "id": 215,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel animal ressemble le plus à {PARTENAIRE} selon toi ?",
+    "tags": ["humour", "duo"]
+  },
+  {
+    "id": 216,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Lequel ou laquelle des ami(e)s de {PARTENAIRE} est ton/ta préféré(e) ?",
+    "tags": ["amis", "duo"]
+  },
+  {
+    "id": 217,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Quelle est ta plus grande peur concernant votre relation avec {PARTENAIRE} ?",
+    "tags": ["peur", "futur"]
+  },
+  {
+    "id": 218,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "16+",
+    "text": "Est-ce que {PARTENAIRE} t'a déjà rendu(e) jaloux/jalouse ?",
+    "tags": ["jalousie", "sentiment"]
+  },
+  {
+    "id": 219,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle a été ta toute première impression en voyant {PARTENAIRE} ?",
+    "tags": ["impression", "rencontre"]
+  },
+  {
+    "id": 220,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est ton souvenir préféré de vous deux avec {PARTENAIRE} ?",
+    "tags": ["souvenir", "amour"]
+  },
+  {
+    "id": 221,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle est la chose que tu aimerais que vous fassiez plus souvent ensemble avec {PARTENAIRE} ?",
+    "tags": ["futur", "duo"]
+  },
+  {
+    "id": 222,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quelle est la chanson qui te fait instantanément penser à {PARTENAIRE} ?",
+    "tags": ["musique", "amour"]
+  },
+  {
+    "id": 223,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quand as-tu su pour la toute première fois que tu étais amoureux/amoureuse de {PARTENAIRE} ?",
+    "tags": ["amour", "declic"]
+  },
+  {
+    "id": 224,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quelle est la petite chose qui, selon toi, pourrait encore améliorer votre relation avec {PARTENAIRE} ?",
+    "tags": ["relation", "progrès"]
+  },
+  {
+    "id": 225,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Qu’est-ce qui t'a le plus attiré(e) chez {PARTENAIRE} en premier lieu ?",
+    "tags": ["attirance", "charme"]
+  },
+  {
+    "id": 226,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quelle scène de film romantique aimerais-tu recréer avec {PARTENAIRE} ?",
+    "tags": ["cinema", "fantasme"]
+  },
+  {
+    "id": 227,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Partage une chose que tu n'oses jamais dire à {PARTENAIRE} par peur de décevoir.",
+    "tags": ["confidant", "secret"]
+  },
+  {
+    "id": 228,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quel compliment ou quelle marque d'affection te fait te sentir le/la plus aimé(e) aux côtés de {PARTENAIRE} ?",
+    "tags": ["compliment", "amour"]
+  },
+  {
+    "id": 229,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "À quoi ressemblerait votre année parfaite à deux si tout était possible avec {PARTENAIRE} ?",
+    "tags": ["rêve", "futur"]
+  },
+  {
+    "id": 230,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quel est le plus grand défi que vous avez surmonté ensemble avec {PARTENAIRE} et qui t'a rendu(e) fier/fière de vous ?",
+    "tags": ["fierté", "foyer"]
+  },
+  {
+    "id": 231,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Quel a été ton plus grand 'red flag' dans tes relations passées, et as-tu déjà eu peur de le reproduire ?",
+    "tags": ["passé", "redflag"]
+  },
+  {
+    "id": 232,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Quel est le moment précis où tu t'es dit « c'est avec {PARTENAIRE} que je veux être » ?",
+    "tags": ["coupdecoeur", "déclic"]
+  },
+  {
+    "id": 233,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Si tu devais t'improviser organisateur d'une journée parfaite pour {PARTENAIRE}, à quoi ressemblerait-elle ?",
+    "tags": ["surprise", "duo"]
+  },
+  {
+    "id": 234,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "16+",
+    "text": "Quelle est la chose la plus folle, romantique ou osée que tu as toujours rêvé qu'on fasse avec {PARTENAIRE} ?",
+    "tags": ["rêve", "audace"]
+  },
+  {
+    "id": 235,
+    "type": "truth",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Quel est le secret le plus mignon ou le plus drôle que tu n'as jamais osé dire à {PARTENAIRE} ?",
+    "tags": ["secret", "mignon"]
+  },
+  {
+    "id": 301,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Regarde {PARTENAIRE} droit dans les yeux pendant 20 secondes avec ton plus beau regard séducteur sans rire !",
+    "tags": ["regard", "flirt", "sourire"]
+  },
+  {
+    "id": 302,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Fais un compliment très poétique et sincère sur le style ou le charme de {PARTENAIRE}.",
+    "tags": ["compliment", "style"]
+  },
+  {
+    "id": 303,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Écris sur un papier la chose que tu admires le plus chez {PARTENAIRE} et offre-le-lui !",
+    "tags": ["motdoux", "amour"]
+  },
+  {
+    "id": 304,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Dessine (même grossièrement) ou mime un projet de vie que tu rêves de réaliser avec {PARTENAIRE} !",
+    "tags": ["mime", "rêve"]
+  },
+  {
+    "id": 305,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Échange ta tenue avec {PARTENAIRE} ou mets un de ses vêtements pendant 2 tours !",
+    "tags": ["vêtement", "rigolo"]
+  },
+  {
+    "id": 306,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Utilise tes pires phrases d’accroche sur {PARTENAIRE} pendant une minute !",
+    "tags": ["flirt", "humour"]
+  },
+  {
+    "id": 307,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Laisse {PARTENAIRE} te dessiner un petit tatouage mignon au stylo ou marqueur !",
+    "tags": ["dessin", "duo"]
+  },
+  {
+    "id": 308,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "Embrasse délicatement la partie que tu préfères du corps de {PARTENAIRE} !",
+    "tags": ["baiser", "tendresse"]
+  },
+  {
+    "id": 309,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Fais un croquis rapide représentant ton meilleur portrait de {PARTENAIRE} !",
+    "tags": ["dessin", "portrait"]
+  },
+  {
+    "id": 310,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Fais ta meilleure imitation amusante de {PARTENAIRE} !",
+    "tags": ["imitation", "duo"]
+  },
+  {
+    "id": 311,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Fais un massage relaxant de 5 minutes sur les épaules ou les mains de {PARTENAIRE} !",
+    "tags": ["massage", "relaxation"]
+  },
+  {
+    "id": 312,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "18+",
+    "text": "Mets une chanson qui te fait instantanément penser à {PARTENAIRE} !",
+    "tags": ["musique", "duo"]
+  },
+  {
+    "id": 313,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "Choisis un extrait d’un livre érotique ou poétique et lis-le à voix haute à {PARTENAIRE} !",
+    "tags": ["lecture", "sensuel"]
+  },
+  {
+    "id": 314,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 4,
+    "age_rating": "18+",
+    "text": "Enlève un vêtement de {PARTENAIRE} en utilisant uniquement tes dents ou ta bouche !",
+    "tags": ["coquin", "audace"]
+  },
+  {
+    "id": 315,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Mets une chanson sur laquelle tu aimerais passer un moment intime avec {PARTENAIRE} !",
+    "tags": ["musique", "coquin"]
+  },
+  {
+    "id": 316,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 4,
+    "age_rating": "18+",
+    "text": "Décris-moi ou explique à {PARTENAIRE} ce que tu ressens exactement lors d'un plaisir intense !",
+    "tags": ["intimité", "plaisir"]
+  },
+  {
+    "id": 317,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "Épelle l'alphabet avec le bout de ta langue posée sur la main ou le cou de {PARTENAIRE} !",
+    "tags": ["sensuel", "jeu"]
+  },
+  {
+    "id": 318,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Va dans une autre pièce et envoie un selfie sexy ou mystérieux à {PARTENAIRE} !",
+    "tags": ["photo", "flirt"]
+  },
+  {
+    "id": 319,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Chuchote 3 mots coquins ou très doux à l'oreille de {PARTENAIRE} !",
+    "tags": ["chuchotement", "motsdoux"]
+  },
+  {
+    "id": 320,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 4,
+    "age_rating": "18+",
+    "text": "Fais une mini lap-dance amusante et séduisante de 30 secondes devant {PARTENAIRE} !",
+    "tags": ["danse", "coquin"]
+  },
+  {
+    "id": 321,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "Fais une tâche de la maison en tenue décalée ou tablier pour faire rire {PARTENAIRE} !",
+    "tags": ["humour", "duo"]
+  },
+  {
+    "id": 322,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Dessine la silhouette de {PARTENAIRE} sur une feuille avec attention !",
+    "tags": ["dessin", "art"]
+  },
+  {
+    "id": 323,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "18+",
+    "text": "Mange un morceau de fruit de la manière la plus séduisante possible devant {PARTENAIRE} !",
+    "tags": ["fruit", "charme"]
+  },
+  {
+    "id": 324,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "Trouve sur ton téléphone un sextoy ou accessoire que tu aimerais essayer avec {PARTENAIRE} !",
+    "tags": ["shopping", "coquin"]
+  },
+  {
+    "id": 325,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 3,
+    "age_rating": "18+",
+    "text": "Prépare un en-cas pour {PARTENAIRE} en ne portant qu'un tablier ou une tenue rigolote !",
+    "tags": ["cuisine", "fun"]
+  },
+  {
+    "id": 326,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Laisse {PARTENAIRE} publier une photo drôle de ton choix dans ta story !",
+    "tags": ["story", "defi"]
+  },
+  {
+    "id": 327,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Laisse {PARTENAIRE} te faire une coiffure originale ou te maquiller légèrement !",
+    "tags": ["beaute", "rigolo"]
+  },
+  {
+    "id": 328,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Prends un selfie ridicule avec {PARTENAIRE} et mettez-le en fond d'écran pour la soirée !",
+    "tags": ["selfie", "souvenir"]
+  },
+  {
+    "id": 329,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Laisse {PARTENAIRE} envoyer un message drôle de ton choix à ton/ta meilleur(e) ami(e) !",
+    "tags": ["sms", "blague"]
+  },
+  {
+    "id": 330,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Porte une tenue choisie par {PARTENAIRE} pendant les 3 prochains tours du jeu !",
+    "tags": ["look", "gage"]
+  },
+  {
+    "id": 331,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Mets un bandeau sur tes yeux et devine 2 aliments donnés par {PARTENAIRE} !",
+    "tags": ["degustation", "jeu"]
+  },
+  {
+    "id": 332,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Mets un glaçon dans la paume de la main de {PARTENAIRE} jusqu'à ce qu'il fonde !",
+    "tags": ["glacon", "frais"]
+  },
+  {
+    "id": 333,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Fais une demande en mariage fictive à {PARTENAIRE} de la manière la plus dramatique possible !",
+    "tags": ["mariage", "theatre"]
+  },
+  {
+    "id": 334,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Chante une sérénade romantique à {PARTENAIRE} à genoux !",
+    "tags": ["serenade", "chant"]
+  },
+  {
+    "id": 335,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Écris une mini-chanson d'amour ou un poème de 4 lignes en 2 minutes pour {PARTENAIRE} !",
+    "tags": ["poeme", "amour"]
+  },
+  {
+    "id": 336,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Maintiens un contact visuel tendre avec {PARTENAIRE} pendant 1 minute sans parler !",
+    "tags": ["regard", "amour"]
+  },
+  {
+    "id": 337,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Fais un gros câlin chaleureux d'une minute à {PARTENAIRE} !",
+    "tags": ["calin", "tendresse"]
+  },
+  {
+    "id": 338,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Dis à {PARTENAIRE} quelque chose de très touchant que tu n'as jamais dit à personne d'autre !",
+    "tags": ["confidence", "amour"]
+  },
+  {
+    "id": 339,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Donne un nouveau surnom mignon et drôle à {PARTENAIRE} !",
+    "tags": ["surnom", "duo"]
+  },
+  {
+    "id": 340,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 2,
+    "age_rating": "13+",
+    "text": "Fais une déclaration d'amour spontanée et enflammée à {PARTENAIRE} !",
+    "tags": ["declaration", "amour"]
+  },
+  {
+    "id": 341,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Cite 3 des plus grandes qualités de {PARTENAIRE} sans hésiter une seule seconde !",
+    "tags": ["qualites", "compliment"]
+  },
+  {
+    "id": 342,
+    "type": "dare",
+    "category": "hot",
+    "difficulty": 1,
+    "age_rating": "13+",
+    "text": "Chante à tue-tête le refrain d'une chanson d'amour très célèbre !",
+    "tags": ["chant", "amour"]
+  },
+  {
+    "id": 401,
+    "type": "truth",
+    "category": "extreme",
+    "difficulty": 2,
+    "age_rating": "16+",
+    "text": "Quel est le secret le plus croustillant que tu n'as encore jamais avoué à ce groupe ?",
+    "tags": ["secret", "soirée"]
+  },
+  {
+    "id": 402,
+    "type": "truth",
+    "category": "extreme",
+    "difficulty": 2,
+    "age_rating": "16+",
+    "text": "As-tu déjà envoyé un message compromettant ou drôle à la mauvaise personne ? Raconte !",
+    "tags": ["erreur", "téléphone"]
+  },
+  {
+    "id": 403,
+    "type": "truth",
+    "category": "extreme",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Quel joueur ici te semble dissimuler le plus de secrets mystérieux ?",
+    "tags": ["groupe", "mystère"]
+  },
+  {
+    "id": 404,
+    "type": "truth",
+    "category": "extreme",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Quelle est la plus grande folie que tu aies faite durant une soirée trop arrosée ou animée ?",
+    "tags": ["fête", "anecdote"]
+  },
+  {
+    "id": 405,
+    "type": "truth",
+    "category": "extreme",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Quel joueur autour de la table ferait le pire colocataire et pourquoi ?",
+    "tags": ["humour", "coloc"]
+  },
+  {
+    "id": 406,
+    "type": "truth",
+    "category": "extreme",
+    "difficulty": 4,
+    "age_rating": "16+",
+    "text": "Quel est le pire mensonge que tu aies dit pour te sortir d'un gros pétrin ?",
+    "tags": ["mensonge", "histoire"]
+  },
+  {
+    "id": 501,
+    "type": "dare",
+    "category": "extreme",
+    "difficulty": 2,
+    "age_rating": "16+",
+    "text": "Invente et danse une chorégraphie survolté de 20 secondes sur une musique imaginaire !",
+    "tags": ["danse", "ambiance"]
+  },
+  {
+    "id": 502,
+    "type": "dare",
+    "category": "extreme",
+    "difficulty": 2,
+    "age_rating": "16+",
+    "text": "Fais une déclaration d'amour passionnée et absurde à une chaise ou un objet dans la pièce !",
+    "tags": ["théâtre", "absurde"]
+  },
+  {
+    "id": 503,
+    "type": "dare",
+    "category": "extreme",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Parle en rimes parfaites jusqu'au prochain tour !",
+    "tags": ["poésie", "défi"]
+  },
+  {
+    "id": 504,
+    "type": "dare",
+    "category": "extreme",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Laisse le groupe te donner un surnom loufoque que tu devras porter toute la partie !",
+    "tags": ["surnom", "fête"]
+  },
+  {
+    "id": 505,
+    "type": "dare",
+    "category": "extreme",
+    "difficulty": 3,
+    "age_rating": "16+",
+    "text": "Commente avec la voix d'un journaliste sportif passionné l'action la plus simple du joueur en face de toi !",
+    "tags": ["commentateur", "impro"]
+  },
+  {
+    "id": 506,
+    "type": "dare",
+    "category": "extreme",
+    "difficulty": 4,
+    "age_rating": "16+",
+    "text": "Chante une comptine pour enfant avec la voix rock / métal la plus ténébreuse possible !",
+    "tags": ["rock", "humour"]
+  }
 ]

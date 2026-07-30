@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Trash2, UserPlus, Sparkles, ArrowRight, CheckCircle2, RotateCcw } from 'lucide-react';
+import { Plus, Trash2, UserPlus, ArrowRight, CheckCircle2, RotateCcw } from 'lucide-react';
 import { Gender, Player } from '../types';
 import { sound } from '../utils/sound';
 
@@ -61,7 +61,7 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
 
   const handleToggleGender = (id: string) => {
     sound.playClick();
-    const genders: Gender[] = ['female', 'male', 'other'];
+    const genders: Gender[] = ['female', 'male'];
     onUpdatePlayers(
       players.map((p) => {
         if (p.id === id) {
@@ -73,39 +73,13 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
     );
   };
 
-  const handleLoadPreset = (presetName: 'friends' | 'couple' | 'party') => {
-    sound.playSuccess();
-    if (presetName === 'friends') {
-      onUpdatePlayers([
-        { id: 'p1', name: 'Alex', avatar: '😎', color: '#f97316', gender: 'male', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-        { id: 'p2', name: 'Sophie', avatar: '👑', color: '#ec4899', gender: 'female', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-        { id: 'p3', name: 'Lucas', avatar: '🔥', color: '#a855f7', gender: 'male', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-        { id: 'p4', name: 'Maya', avatar: '🥳', color: '#10b981', gender: 'female', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-      ]);
-    } else if (presetName === 'couple') {
-      onUpdatePlayers([
-        { id: 'p1', name: 'Mon Amour 💖', avatar: '👑', color: '#ec4899', gender: 'female', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-        { id: 'p2', name: 'Mon Cœur 💕', avatar: '🔥', color: '#f97316', gender: 'male', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-      ]);
-    } else if (presetName === 'party') {
-      onUpdatePlayers([
-        { id: 'p1', name: 'Léa', avatar: '💃', color: '#ec4899', gender: 'female', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-        { id: 'p2', name: 'Thomas', avatar: '🕺', color: '#3b82f6', gender: 'male', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-        { id: 'p3', name: 'Chloé', avatar: '🥳', color: '#a855f7', gender: 'female', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-        { id: 'p4', name: 'Hugo', avatar: '🚀', color: '#10b981', gender: 'male', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-        { id: 'p5', name: 'Emma', avatar: '💎', color: '#06b6d4', gender: 'female', score: 0, completedTruths: 0, completedDares: 0, passedCount: 0 },
-      ]);
-    }
-  };
-
   const getGenderBadge = (g: Gender) => {
     switch (g) {
       case 'male':
         return { label: 'Homme 👨', color: 'bg-blue-500/20 text-blue-300 border-blue-500/30' };
       case 'female':
-        return { label: 'Femme 👩', color: 'bg-pink-500/20 text-pink-300 border-pink-500/30' };
       default:
-        return { label: 'Autre ✨', color: 'bg-purple-500/20 text-purple-300 border-purple-500/30' };
+        return { label: 'Femme 👩', color: 'bg-pink-500/20 text-pink-300 border-pink-500/30' };
     }
   };
 
@@ -122,40 +96,6 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
         <h2 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-white via-slate-100 to-rose-200 bg-clip-text text-transparent">
           Qui va tourner la roue ? 🎡
         </h2>
-        <p className="text-slate-400 text-xs sm:text-sm mt-1">
-          Définissez le sexe des joueurs pour des gages ciblés et compatibles !
-        </p>
-      </div>
-
-      {/* Quick Presets */}
-      <div className="mb-6 bg-slate-950/60 p-3 rounded-2xl border border-slate-800/80">
-        <p className="text-xs text-slate-400 mb-2 font-medium flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>Remplissage rapide :</span>
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => handleLoadPreset('friends')}
-            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-amber-300 border border-slate-700/80 transition-all active:scale-95 flex items-center gap-1.5"
-          >
-            <span>👥 Amis (4)</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => handleLoadPreset('couple')}
-            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-pink-300 border border-slate-700/80 transition-all active:scale-95 flex items-center gap-1.5"
-          >
-            <span>💕 Duo Couple (2)</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => handleLoadPreset('party')}
-            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-purple-300 border border-slate-700/80 transition-all active:scale-95 flex items-center gap-1.5"
-          >
-            <span>🍸 Soirée (5)</span>
-          </button>
-        </div>
       </div>
 
       {/* Add Player Input Form */}
@@ -184,7 +124,7 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
           {/* Gender selection buttons */}
           <div className="flex items-center gap-2">
             <span className="text-xs text-slate-400 font-medium shrink-0">Genre / Sexe:</span>
-            <div className="grid grid-cols-3 gap-1.5 flex-1">
+            <div className="grid grid-cols-2 gap-1.5 flex-1">
               <button
                 type="button"
                 onClick={() => setSelectedGender('female')}
@@ -206,17 +146,6 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
                 }`}
               >
                 Homme 👨
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedGender('other')}
-                className={`py-1.5 px-2 rounded-xl text-xs font-bold transition-all border ${
-                  selectedGender === 'other'
-                    ? 'bg-purple-500/30 text-purple-200 border-purple-500 shadow-sm'
-                    : 'bg-slate-950 text-slate-400 border-slate-800 hover:bg-slate-800'
-                }`}
-              >
-                Autre ✨
               </button>
             </div>
           </div>

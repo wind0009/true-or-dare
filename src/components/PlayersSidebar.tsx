@@ -60,9 +60,8 @@ export const PlayersSidebar: React.FC<PlayersSidebarProps> = ({
       case 'male':
         return '👨';
       case 'female':
-        return '👩';
       default:
-        return '✨';
+        return '👩';
     }
   };
 
@@ -136,15 +135,6 @@ export const PlayersSidebar: React.FC<PlayersSidebarProps> = ({
                 }`}
               >
                 Homme 👨
-              </button>
-              <button
-                type="button"
-                onClick={() => setNewPlayerGender('other')}
-                className={`px-2 py-0.5 rounded-lg border font-bold ${
-                  newPlayerGender === 'other' ? 'bg-purple-100 border-purple-400 text-purple-700' : 'bg-white border-slate-200 text-slate-600'
-                }`}
-              >
-                Autre ✨
               </button>
             </div>
           </form>

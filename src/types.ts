@@ -2,9 +2,9 @@ export type GameModeId = 'amis' | 'couple' | 'soiree' | 'famille' | 'custom';
 
 export type CardType = 'truth' | 'dare';
 
-export type IntensityLevel = 'soft' | 'medium' | 'spicy';
+export type IntensityLevel = 'soft' | 'hot' | 'hard' | 'extreme';
 
-export type Gender = 'male' | 'female' | 'other';
+export type Gender = 'male' | 'female';
 
 export interface Player {
   id: string;
