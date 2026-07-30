@@ -1,5 +1,4 @@
 import { CardItem, CardType, GameMode, GameModeId, IntensityLevel, Player } from '../types';
-import rawDatabase from './raw_questions.json';
 
 export const GAME_MODES: GameMode[] = [
   {
@@ -44,28 +43,63 @@ export const GAME_MODES: GameMode[] = [
   },
 ];
 
-// Map 600 JSON items into typed CardItems
-export const FULL_DATABASE: CardItem[] = (rawDatabase as any[]).map((item) => ({
-  id: `db_${item.id}`,
-  type: item.type as CardType,
-  category: item.category as 'soft' | 'hot' | 'extreme',
-  difficulty: item.difficulty || 1,
-  age_rating: item.age_rating || '13+',
-  text: item.text,
-  tags: item.tags || [],
-  mode:
-    item.category === 'hot'
-      ? 'couple'
-      : item.category === 'extreme'
-      ? 'soiree'
-      : 'amis',
-  intensity:
-    item.difficulty <= 2
-      ? 'soft'
-      : item.difficulty === 3
-      ? 'medium'
-      : 'spicy',
-}));
+const card = (
+  id: string,
+  type: CardType,
+  category: 'soft' | 'hot' | 'extreme',
+  text: string,
+  difficulty = 1,
+): CardItem => ({
+  id,
+  type,
+  category,
+  difficulty,
+  age_rating: category === 'hot' ? '18+' : category === 'extreme' ? '16+' : '13+',
+  text,
+  tags: [],
+  mode: category === 'hot' ? 'couple' : category === 'extreme' ? 'soiree' : 'amis',
+  intensity: difficulty <= 2 ? 'soft' : difficulty === 3 ? 'medium' : 'spicy',
+});
+
+// Des cartes courtes, naturelles et faciles à lancer dans une vraie soirée.
+export const FULL_DATABASE: CardItem[] = [
+  card('soft-t1', 'truth', 'soft', 'C’est quoi ton plus gros délire en ce moment ?'),
+  card('soft-t2', 'truth', 'soft', 'Tu préfères quoi chez toi ?'),
+  card('soft-t3', 'truth', 'soft', 'C’est quoi ton dernier gros fou rire ?'),
+  card('soft-t4', 'truth', 'soft', 'Tu as déjà eu un gros coup de honte pour quoi ?'),
+  card('soft-t5', 'truth', 'soft', 'C’est quoi le truc le plus bizarre que tu aimes bien ?'),
+  card('soft-t6', 'truth', 'soft', 'Qui ici te fait le plus rire ?'),
+  card('soft-d1', 'dare', 'soft', 'Imite quelqu’un du groupe pendant 20 secondes.'),
+  card('soft-d2', 'dare', 'soft', 'Parle avec un accent jusqu’à ton prochain tour.'),
+  card('soft-d3', 'dare', 'soft', 'Fais ta meilleure danse pendant 15 secondes.'),
+  card('soft-d4', 'dare', 'soft', 'Laisse le groupe choisir une chanson : chante le refrain.'),
+  card('soft-d5', 'dare', 'soft', 'Fais deviner un film sans parler.'),
+  card('soft-d6', 'dare', 'soft', 'Fais un compliment à la personne à ta droite.'),
+  card('hot-t1', 'truth', 'hot', 'C’est quoi ton type de personne, en vrai ?'),
+  card('hot-t2', 'truth', 'hot', 'C’est quoi le meilleur compliment qu’on puisse te faire ?'),
+  card('hot-t3', 'truth', 'hot', 'Tu as déjà crushé sur quelqu’un ici ?'),
+  card('hot-t4', 'truth', 'hot', 'C’est quoi ton date parfait ?'),
+  card('hot-t5', 'truth', 'hot', 'Tu regardes quoi en premier chez quelqu’un ?'),
+  card('hot-t6', 'truth', 'hot', 'Le truc le plus mignon qu’on ait fait pour toi ?'),
+  card('hot-d1', 'dare', 'hot', 'Dis un compliment sincère à la personne de ton choix.'),
+  card('hot-d2', 'dare', 'hot', 'Regarde une personne dans les yeux pendant 10 secondes.'),
+  card('hot-d3', 'dare', 'hot', 'Fais une mini déclaration drôle à la personne de ton choix.'),
+  card('hot-d4', 'dare', 'hot', 'Envoie un emoji qui te représente à la personne de ton choix.'),
+  card('hot-d5', 'dare', 'hot', 'Propose un date complètement absurde à une personne volontaire.'),
+  card('hot-d6', 'dare', 'hot', 'Dis à qui tu laisserais choisir la prochaine musique.'),
+  card('party-t1', 'truth', 'extreme', 'C’est quoi le mensonge le plus nul que tu as déjà sorti ?', 3),
+  card('party-t2', 'truth', 'extreme', 'C’est quoi le truc le plus gênant dans ton téléphone ?', 3),
+  card('party-t3', 'truth', 'extreme', 'Tu as déjà stalké quelqu’un sur les réseaux ?', 3),
+  card('party-t4', 'truth', 'extreme', 'Tu as déjà fait semblant d’aimer un cadeau ?', 3),
+  card('party-t5', 'truth', 'extreme', 'C’est quoi ton pire message envoyé au mauvais moment ?', 3),
+  card('party-t6', 'truth', 'extreme', 'Quelle excuse bidon tu utilises le plus ?', 3),
+  card('party-d1', 'dare', 'extreme', 'Laisse le groupe choisir ta photo de profil pendant 10 minutes.', 3),
+  card('party-d2', 'dare', 'extreme', 'Fais une pub ultra sérieuse pour un objet dans la pièce.', 3),
+  card('party-d3', 'dare', 'extreme', 'Fais 10 secondes de stand-up sur quelqu’un du groupe.', 3),
+  card('party-d4', 'dare', 'extreme', 'Laisse le groupe te donner un surnom pour la partie.', 3),
+  card('party-d5', 'dare', 'extreme', 'Fais une voix de dessin animé jusqu’à ton prochain tour.', 3),
+  card('party-d6', 'dare', 'extreme', 'Fais le défilé le plus gênant possible.', 3),
+];
 
 // Fallback initial questions list
 export const INITIAL_QUESTIONS: CardItem[] = FULL_DATABASE;
