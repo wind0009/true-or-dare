@@ -1,8 +1,10 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import Game from "../app/page";
-import "../app/globals.css";
+import {StrictMode} from 'react';
+import {createRoot} from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode><Game /></StrictMode>,
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
 );
