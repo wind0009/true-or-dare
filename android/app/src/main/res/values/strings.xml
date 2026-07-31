@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Action ou Vérité</string>
+    <string name="title_activity_main">Action ou Vérité</string>
+    <string name="package_name">com.wind0009.actionverite</string>
+    <string name="custom_url_scheme">com.wind0009.actionverite</string>
+</resources>
