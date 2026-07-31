@@ -1,5 +1,5 @@
 import React from 'react';
-import { Volume2, VolumeX, Home } from 'lucide-react';
+import { Volume2, VolumeX, Home, Sliders } from 'lucide-react';
 import { GameMode, GameState, Player } from '../types';
 import { sound } from '../utils/sound';
 
@@ -10,6 +10,7 @@ interface HeaderProps {
   soundEnabled: boolean;
   setSoundEnabled: (val: boolean) => void;
   onGoHome: () => void;
+  onOpenCardManager?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -19,6 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
   soundEnabled,
   setSoundEnabled,
   onGoHome,
+  onOpenCardManager,
 }) => {
   const toggleSound = () => {
     const next = !soundEnabled;
@@ -54,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Right Section: Status Tag & Sound Toggle */}
+        {/* Right Section: Status Tag, Card Manager & Sound Toggle */}
         <div className="flex items-center gap-2 sm:gap-3">
           
           {/* Status pill */}
@@ -62,6 +64,22 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>PARTIE EN COURS • {players.length} JOUEURS</span>
           </div>
+
+          {/* Card Manager Button */}
+          {onOpenCardManager && (
+            <button
+              id="header-card-manager-btn"
+              onClick={() => {
+                sound.playClick();
+                onOpenCardManager();
+              }}
+              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-purple-600/20 hover:bg-purple-600/30 text-purple-200 border border-purple-500/30 transition-all active:scale-95 text-xs font-bold"
+              title="Gestionnaire & Import/Export de Cartes"
+            >
+              <Sliders className="w-4 h-4 text-purple-400" />
+              <span className="hidden sm:inline">Gestion des Cartes</span>
+            </button>
+          )}
 
           {/* Sound Toggle */}
           <button

@@ -107,7 +107,7 @@ export const PlayersSidebar: React.FC<PlayersSidebarProps> = ({
             </div>
 
             <div className="flex items-center gap-1 text-[11px]">
-              <span className="text-slate-500 font-bold mr-1">Sexe :</span>
+              <span className="text-slate-500 font-bold mr-1">Genre :</span>
               <button
                 type="button"
                 onClick={() => setNewPlayerGender('female')}
@@ -150,7 +150,7 @@ export const PlayersSidebar: React.FC<PlayersSidebarProps> = ({
                   </span>
                   
                   <span className="text-base">{player.avatar}</span>
-                  <span className="truncate max-w-[100px]">{player.name}</span>
+                  <span className="truncate max-w-[120px]">{player.name}</span>
                 </div>
 
                 <div className="flex items-center gap-2">

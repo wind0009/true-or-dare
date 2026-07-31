@@ -34,12 +34,17 @@ export interface CardItem {
   type: CardType;
   category?: 'soft' | 'hot' | 'extreme';
   difficulty?: number;
-  age_rating?: string;
+  age_rating?: '13+' | '16+' | '18+';
   text: string;
   tags?: string[];
   mode?: GameModeId;
   intensity?: IntensityLevel;
   custom?: boolean;
+  enabled?: boolean;
+  weight?: number;
+  created_at?: string;
+  updated_at?: string;
+  reported?: boolean;
   targetPartner?: Player; // Target player for gender compatibility & personalized gages
 }
 

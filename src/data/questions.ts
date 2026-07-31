@@ -1,5 +1,6 @@
 import { CardItem, CardType, GameMode, GameModeId, IntensityLevel, Player } from '../types';
 import rawDatabase from './raw_questions.json';
+import srcQuestions from './src_questions.json';
 
 export const GAME_MODES: GameMode[] = [
   {
@@ -152,6 +153,28 @@ export const FULL_DATABASE: CardItem[] = [
       intensity,
     };
   }),
+  ...(srcQuestions as any[]).map((item) => {
+    const intensity = determineIntensity(item);
+
+    const modeId: GameModeId =
+      item.tags?.includes('couple') || intensity === 'hot' || item.category === 'hot'
+        ? 'couple'
+        : intensity === 'extreme' || item.category === 'extreme'
+        ? 'soiree'
+        : 'amis';
+
+    return {
+      id: item.id,
+      type: item.type as CardType,
+      category: item.category as 'soft' | 'hot' | 'extreme',
+      difficulty: item.difficulty || 1,
+      age_rating: item.age_rating || '13+',
+      text: item.text,
+      tags: item.tags || [],
+      mode: modeId,
+      intensity,
+    };
+  }),
   ...EXTRA_TARGETED_QUESTIONS,
 ];
 
@@ -236,3 +259,4 @@ export const getSmartCard = (
     targetPartner: targetPartner || undefined,
   };
 };
+

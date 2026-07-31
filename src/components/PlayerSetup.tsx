@@ -91,10 +91,10 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-semibold mb-2">
           <span>Étape 1 sur 2</span>
           <span className="w-1 h-1 rounded-full bg-rose-500"></span>
-          <span>Joueurs & Genre pour Gages</span>
+          <span>Ajout des Joueurs</span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-white via-slate-100 to-rose-200 bg-clip-text text-transparent">
-          Qui va tourner la roue ? 🎡
+          Ajoute le prénom des joueurs 🎡
         </h2>
       </div>
 
@@ -123,7 +123,7 @@ export const PlayerSetup: React.FC<PlayerSetupProps> = ({
 
           {/* Gender selection buttons */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-slate-400 font-medium shrink-0">Genre / Sexe:</span>
+            <span className="text-xs text-slate-400 font-medium shrink-0">Genre:</span>
             <div className="grid grid-cols-2 gap-1.5 flex-1">
               <button
                 type="button"
