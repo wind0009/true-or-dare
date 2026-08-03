@@ -41,10 +41,14 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
 
   const rotationRef = useRef<number>(0);
   const animationRef = useRef<number | null>(null);
+  const winnerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pointerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const spinningRef = useRef<boolean>(false);
   const lastTickSegmentRef = useRef<number>(-1);
 
   // Drag-to-spin state
   const isDraggingRef = useRef<boolean>(false);
+  const suppressClickRef = useRef<boolean>(false);
   const lastDragAngleRef = useRef<number>(0);
   const dragVelocitiesRef = useRef<{ angle: number; time: number }[]>([]);
 
@@ -210,9 +214,12 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
   // 3. Ultra-Smooth GPU Physics Spin Animation
   const spinWheel = useCallback(
     (targetWinnerIndex?: number) => {
-      if (isSpinning || numPlayers < 2) return;
+      // A ref is used in addition to React state: state updates are asynchronous,
+      // so fast repeated taps must not be able to start two animations at once.
+      if (spinningRef.current || numPlayers < 2) return;
 
       sound.playClick();
+      spinningRef.current = true;
       setIsSpinning(true);
       setWinner(null);
 
@@ -232,7 +239,9 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
       // 7 to 11 full turns for authentic Wheel of Names momentum
       const fullTurns = (7 + Math.floor(Math.random() * 4)) * 2 * Math.PI;
 
-      const startRot = rotationRef.current;
+      // Keep the value small between rounds to avoid precision issues after many spins.
+      const startRot = ((rotationRef.current % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      setWheelRotation(startRot);
       const currentNormalized = ((startRot % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
       let delta = (targetBase - currentNormalized + 2 * Math.PI) % (2 * Math.PI);
       if (delta < Math.PI * 0.5) delta += 2 * Math.PI;
@@ -270,7 +279,8 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
           if (pointerRef.current) {
             const tilt = Math.min(22, 10 + speedFactor * 16);
             pointerRef.current.style.transform = `rotate(-${tilt}deg)`;
-            setTimeout(() => {
+            if (pointerTimerRef.current) clearTimeout(pointerTimerRef.current);
+            pointerTimerRef.current = setTimeout(() => {
               if (pointerRef.current) pointerRef.current.style.transform = 'rotate(0deg)';
             }, 50);
           }
@@ -279,6 +289,7 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
         if (progress < 1) {
           animationRef.current = requestAnimationFrame(animateFrame);
         } else {
+          spinningRef.current = false;
           setIsSpinning(false);
           setWinner(chosenPlayer);
           sound.playWinner();
@@ -300,7 +311,8 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
             });
           } catch (e) {}
 
-          setTimeout(() => {
+          if (winnerTimerRef.current) clearTimeout(winnerTimerRef.current);
+          winnerTimerRef.current = setTimeout(() => {
             onSelectPlayer(chosenPlayer);
           }, 1000);
         }
@@ -309,7 +321,7 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       animationRef.current = requestAnimationFrame(animateFrame);
     },
-    [isSpinning, numPlayers, players, sliceAngle, onSelectPlayer, setIsSpinning]
+    [numPlayers, players, sliceAngle, onSelectPlayer, setIsSpinning]
   );
 
   // 4. Drag / Flick gesture handling
@@ -322,8 +334,9 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
   };
 
   const handlePointerDown = (e: React.PointerEvent) => {
-    if (isSpinning || numPlayers < 2) return;
+    if (spinningRef.current || numPlayers < 2) return;
     isDraggingRef.current = true;
+    suppressClickRef.current = false;
     const angle = getAngleFromCenter(e.clientX, e.clientY);
     lastDragAngleRef.current = angle;
     dragVelocitiesRef.current = [{ angle, time: performance.now() }];
@@ -336,6 +349,8 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
 
     if (delta > Math.PI) delta -= 2 * Math.PI;
     if (delta < -Math.PI) delta += 2 * Math.PI;
+
+    if (Math.abs(delta) > 0.02) suppressClickRef.current = true;
 
     setWheelRotation(rotationRef.current + delta);
     lastDragAngleRef.current = currentAngle;
@@ -369,8 +384,20 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
   useEffect(() => {
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      if (winnerTimerRef.current) clearTimeout(winnerTimerRef.current);
+      if (pointerTimerRef.current) clearTimeout(pointerTimerRef.current);
+      spinningRef.current = false;
+      setIsSpinning(false);
     };
-  }, []);
+  }, [setIsSpinning]);
+
+  const handleWheelClick = () => {
+    if (suppressClickRef.current) {
+      suppressClickRef.current = false;
+      return;
+    }
+    spinWheel();
+  };
 
   return (
     <div className="w-full flex flex-col items-center justify-center py-2 px-2 select-none">
@@ -421,10 +448,11 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
 
         {/* ROTATING GPU WHEEL DISK */}
         <div
-          onClick={() => spinWheel()}
+          onClick={handleWheelClick}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
           onPointerLeave={handlePointerUp}
           className={`relative z-10 rounded-full transition-transform touch-none cursor-pointer ${
             isSpinning ? 'cursor-not-allowed' : 'hover:scale-[1.015] active:scale-95'
