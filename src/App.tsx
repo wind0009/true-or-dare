@@ -19,6 +19,8 @@ import { sound } from './utils/sound';
 const STORAGE_KEY_PLAYERS = 'av_app_players_v1';
 const STORAGE_KEY_WHATSAPP_CALL = 'av_app_whatsapp_call_v1';
 const STORAGE_KEY_ONLINE_PLAYER = 'av_online_player_id_v1';
+const ONLINE_PLAYER_COLORS = ['#f97316', '#ec4899', '#a855f7', '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4'];
+const ONLINE_PLAYER_AVATARS = ['🎮', '⭐', '🔥', '🎲', '🚀', '💎', '🎉', '🦊'];
 
 export default function App() {
   // Players state
@@ -93,7 +95,25 @@ export default function App() {
         if (event.type === 'spin' && !isHost && event.payload?.winnerId) setRemoteSpin({ winnerId: event.payload.winnerId, nonce: Date.now() });
         if (event.type === 'request-state' && isHost) sendRoomEvent({ type: 'game-state', payload: { players } });
       },
-      onPresence: setOnlineMembers,
+      onPresence: (members) => {
+        // The room members are the only names eligible for the online wheel.
+        // Sorting by id gives every device the same wheel order and colors.
+        const sortedMembers = [...members].sort((a, b) => a.id.localeCompare(b.id));
+        setOnlineMembers(sortedMembers);
+        setPlayers(
+          sortedMembers.map((member, index) => ({
+            id: member.id,
+            name: member.name,
+            avatar: ONLINE_PLAYER_AVATARS[index % ONLINE_PLAYER_AVATARS.length],
+            color: ONLINE_PLAYER_COLORS[index % ONLINE_PLAYER_COLORS.length],
+            gender: index % 2 === 0 ? 'female' : 'male',
+            score: 0,
+            completedTruths: 0,
+            completedDares: 0,
+            passedCount: 0,
+          })),
+        );
+      },
     });
     setOnlineRoomCode(code);
     setOnlineIsHost(isHost);
