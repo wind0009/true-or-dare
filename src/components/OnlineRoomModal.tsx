@@ -29,6 +29,8 @@ export const OnlineRoomModal: React.FC<OnlineRoomModalProps> = ({ isOpen, onClos
     try {
       await onConnect(nextCode, name.trim(), isHost);
       sound.playSuccess();
+      // Once connected, take the player straight to the shared game board.
+      onClose();
     } catch {
       setError('Impossible de rejoindre la salle. Réessaie dans quelques secondes.');
     } finally {

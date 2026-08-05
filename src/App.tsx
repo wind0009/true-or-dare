@@ -124,6 +124,10 @@ export default function App() {
     });
     setOnlineRoomCode(code);
     setOnlineIsHost(isHost);
+    // An online room is its own game: it never keeps the local setup screen open.
+    setSelectedPlayer(null);
+    setCurrentCard(null);
+    setGameState('SPINNING');
     if (isHost) await sendRoomEvent({ type: 'game-state', payload: { players: playersRef.current } });
     else await sendRoomEvent({ type: 'request-state' });
   };
