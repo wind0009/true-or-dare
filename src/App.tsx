@@ -7,6 +7,7 @@ import { ActionVeriteChoice } from './components/ActionVeriteChoice';
 import { ChallengeCard } from './components/ChallengeCard';
 import { PlayersSidebar } from './components/PlayersSidebar';
 import { CardManagerModal } from './components/CardManagerModal';
+import { WhatsAppCallModal } from './components/WhatsAppCallModal';
 
 import { CardItem, CardType, GameMode, GameState, IntensityLevel, Player } from './types';
 import { GAME_MODES } from './data/questions';
@@ -14,6 +15,7 @@ import { cardEngine } from './services/cardEngine';
 import { sound } from './utils/sound';
 
 const STORAGE_KEY_PLAYERS = 'av_app_players_v1';
+const STORAGE_KEY_WHATSAPP_CALL = 'av_app_whatsapp_call_v1';
 
 export default function App() {
   // Players state
@@ -63,6 +65,13 @@ export default function App() {
 
   // Card Manager modal toggle
   const [isCardManagerOpen, setIsCardManagerOpen] = useState<boolean>(false);
+  const [isWhatsAppCallOpen, setIsWhatsAppCallOpen] = useState<boolean>(false);
+  const [whatsAppCallLink, setWhatsAppCallLink] = useState<string>(() => localStorage.getItem(STORAGE_KEY_WHATSAPP_CALL) || '');
+
+  const saveWhatsAppCallLink = (link: string) => {
+    setWhatsAppCallLink(link);
+    localStorage.setItem(STORAGE_KEY_WHATSAPP_CALL, link);
+  };
 
   // Sound
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
@@ -185,6 +194,7 @@ export default function App() {
         setSoundEnabled={setSoundEnabled}
         onGoHome={() => setGameState('SELECT_MODE')}
         onOpenCardManager={() => setIsCardManagerOpen(true)}
+        onOpenWhatsAppCall={() => setIsWhatsAppCallOpen(true)}
       />
 
       {/* Main Grid */}
@@ -281,6 +291,13 @@ export default function App() {
         playersList={players.map((p) => p.name)}
       />
 
+      <WhatsAppCallModal
+        isOpen={isWhatsAppCallOpen}
+        onClose={() => setIsWhatsAppCallOpen(false)}
+        callLink={whatsAppCallLink}
+        onSaveCallLink={saveWhatsAppCallLink}
+      />
+
       {/* Empty Pool Options Modal */}
       {showEmptyPoolOptions && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
@@ -343,4 +360,3 @@ export default function App() {
     </div>
   );
 }
-

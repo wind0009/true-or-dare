@@ -1,5 +1,5 @@
 import React from 'react';
-import { Volume2, VolumeX, Home, Sliders } from 'lucide-react';
+import { Volume2, VolumeX, Home, Sliders, MessageCircle } from 'lucide-react';
 import { GameMode, GameState, Player } from '../types';
 import { sound } from '../utils/sound';
 
@@ -11,6 +11,7 @@ interface HeaderProps {
   setSoundEnabled: (val: boolean) => void;
   onGoHome: () => void;
   onOpenCardManager?: () => void;
+  onOpenWhatsAppCall?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -21,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
   setSoundEnabled,
   onGoHome,
   onOpenCardManager,
+  onOpenWhatsAppCall,
 }) => {
   const toggleSound = () => {
     const next = !soundEnabled;
@@ -78,6 +80,21 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <Sliders className="w-4 h-4 text-purple-400" />
               <span className="hidden sm:inline">Gestion des Cartes</span>
+            </button>
+          )}
+
+          {onOpenWhatsAppCall && (
+            <button
+              type="button"
+              onClick={() => {
+                sound.playClick();
+                onOpenWhatsAppCall();
+              }}
+              className="flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/15 px-3 py-2 text-xs font-bold text-emerald-200 transition-all hover:bg-emerald-500/25 active:scale-95"
+              title="Rejoindre l'appel WhatsApp"
+            >
+              <MessageCircle className="h-4 w-4 text-emerald-400" />
+              <span className="hidden sm:inline">Appel WhatsApp</span>
             </button>
           )}
 
