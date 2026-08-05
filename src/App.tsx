@@ -9,7 +9,7 @@ import { PlayersSidebar } from './components/PlayersSidebar';
 import { CardManagerModal } from './components/CardManagerModal';
 import { WhatsAppCallModal } from './components/WhatsAppCallModal';
 import { OnlineRoomModal } from './components/OnlineRoomModal';
-import { joinOnlineRoom, leaveOnlineRoom, RoomMember } from './services/onlineRoom';
+import { joinOnlineRoom, leaveOnlineRoom, RoomMember, sendRoomEvent } from './services/onlineRoom';
 
 import { CardItem, CardType, GameMode, GameState, IntensityLevel, Player } from './types';
 import { GAME_MODES } from './data/questions';
@@ -73,6 +73,8 @@ export default function App() {
   const [isOnlineRoomOpen, setIsOnlineRoomOpen] = useState(false);
   const [onlineRoomCode, setOnlineRoomCode] = useState('');
   const [onlineMembers, setOnlineMembers] = useState<RoomMember[]>([]);
+  const [onlineIsHost, setOnlineIsHost] = useState(false);
+  const [remoteSpin, setRemoteSpin] = useState<{ winnerId: string; nonce: number } | null>(null);
 
   const onlinePlayerId = (() => {
     const existing = localStorage.getItem(STORAGE_KEY_ONLINE_PLAYER);
@@ -83,14 +85,36 @@ export default function App() {
   })();
 
   const connectOnlineRoom = async (code: string, displayName: string, isHost: boolean) => {
-    await joinOnlineRoom({ code, member: { id: onlinePlayerId, name: displayName }, onEvent: () => {}, onPresence: setOnlineMembers });
+    await joinOnlineRoom({
+      code,
+      member: { id: onlinePlayerId, name: displayName },
+      onEvent: (event) => {
+        if (event.type === 'game-state' && !isHost && event.payload?.players) setPlayers(event.payload.players);
+        if (event.type === 'spin' && !isHost && event.payload?.winnerId) setRemoteSpin({ winnerId: event.payload.winnerId, nonce: Date.now() });
+        if (event.type === 'request-state' && isHost) sendRoomEvent({ type: 'game-state', payload: { players } });
+      },
+      onPresence: setOnlineMembers,
+    });
     setOnlineRoomCode(code);
+    setOnlineIsHost(isHost);
+    if (isHost) await sendRoomEvent({ type: 'game-state', payload: { players } });
+    else await sendRoomEvent({ type: 'request-state' });
   };
 
   const disconnectOnlineRoom = async () => {
     await leaveOnlineRoom();
     setOnlineRoomCode('');
     setOnlineMembers([]);
+    setOnlineIsHost(false);
+    setRemoteSpin(null);
+  };
+
+  useEffect(() => {
+    if (onlineRoomCode && onlineIsHost) sendRoomEvent({ type: 'game-state', payload: { players } });
+  }, [onlineRoomCode, onlineIsHost, players]);
+
+  const handleOnlineSpin = (player: Player) => {
+    if (onlineRoomCode && onlineIsHost) sendRoomEvent({ type: 'spin', payload: { winnerId: player.id } });
   };
 
   const saveWhatsAppCallLink = (link: string) => {
@@ -268,6 +292,9 @@ export default function App() {
                     isSpinning={isSpinning}
                     setIsSpinning={setIsSpinning}
                     selectedPlayer={selectedPlayer}
+                    canSpin={!onlineRoomCode || onlineIsHost}
+                    onSpinStarted={handleOnlineSpin}
+                    remoteSpin={remoteSpin}
                   />
 
                 </div>

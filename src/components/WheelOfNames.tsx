@@ -9,6 +9,9 @@ interface WheelOfNamesProps {
   isSpinning: boolean;
   setIsSpinning: (val: boolean) => void;
   selectedPlayer: Player | null;
+  canSpin?: boolean;
+  onSpinStarted?: (player: Player) => void;
+  remoteSpin?: { winnerId: string; nonce: number } | null;
 }
 
 // Vibrant Wheel of Names palette
@@ -33,6 +36,9 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
   isSpinning,
   setIsSpinning,
   selectedPlayer,
+  canSpin = true,
+  onSpinStarted,
+  remoteSpin,
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -213,10 +219,10 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
 
   // 3. Ultra-Smooth GPU Physics Spin Animation
   const spinWheel = useCallback(
-    (targetWinnerIndex?: number) => {
+    (targetWinnerIndex?: number, isRemote = false) => {
       // A ref is used in addition to React state: state updates are asynchronous,
       // so fast repeated taps must not be able to start two animations at once.
-      if (spinningRef.current || numPlayers < 2) return;
+      if (spinningRef.current || numPlayers < 2 || (!canSpin && !isRemote)) return;
 
       sound.playClick();
       spinningRef.current = true;
@@ -228,6 +234,7 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
           ? targetWinnerIndex
           : Math.floor(Math.random() * numPlayers);
       const chosenPlayer = players[winnerIndex];
+      if (!isRemote) onSpinStarted?.(chosenPlayer);
 
       // Top pointer is at 12 o'clock (1.5 * PI or 270 degrees)
       const segmentCenter = winnerIndex * sliceAngle + sliceAngle / 2;
@@ -321,8 +328,14 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       animationRef.current = requestAnimationFrame(animateFrame);
     },
-    [numPlayers, players, sliceAngle, onSelectPlayer, setIsSpinning]
+    [canSpin, numPlayers, players, sliceAngle, onSelectPlayer, onSpinStarted, setIsSpinning]
   );
+
+  useEffect(() => {
+    if (!remoteSpin) return;
+    const winnerIndex = players.findIndex((player) => player.id === remoteSpin.winnerId);
+    if (winnerIndex >= 0) spinWheel(winnerIndex, true);
+  }, [players, remoteSpin, spinWheel]);
 
   // 4. Drag / Flick gesture handling
   const getAngleFromCenter = (clientX: number, clientY: number) => {
@@ -334,7 +347,7 @@ export const WheelOfNames: React.FC<WheelOfNamesProps> = ({
   };
 
   const handlePointerDown = (e: React.PointerEvent) => {
-    if (spinningRef.current || numPlayers < 2) return;
+    if (spinningRef.current || numPlayers < 2 || !canSpin) return;
     isDraggingRef.current = true;
     suppressClickRef.current = false;
     const angle = getAngleFromCenter(e.clientX, e.clientY);
