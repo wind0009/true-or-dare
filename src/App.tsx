@@ -8,6 +8,8 @@ import { ChallengeCard } from './components/ChallengeCard';
 import { PlayersSidebar } from './components/PlayersSidebar';
 import { CardManagerModal } from './components/CardManagerModal';
 import { WhatsAppCallModal } from './components/WhatsAppCallModal';
+import { OnlineRoomModal } from './components/OnlineRoomModal';
+import { joinOnlineRoom, leaveOnlineRoom, RoomMember } from './services/onlineRoom';
 
 import { CardItem, CardType, GameMode, GameState, IntensityLevel, Player } from './types';
 import { GAME_MODES } from './data/questions';
@@ -16,6 +18,7 @@ import { sound } from './utils/sound';
 
 const STORAGE_KEY_PLAYERS = 'av_app_players_v1';
 const STORAGE_KEY_WHATSAPP_CALL = 'av_app_whatsapp_call_v1';
+const STORAGE_KEY_ONLINE_PLAYER = 'av_online_player_id_v1';
 
 export default function App() {
   // Players state
@@ -67,6 +70,28 @@ export default function App() {
   const [isCardManagerOpen, setIsCardManagerOpen] = useState<boolean>(false);
   const [isWhatsAppCallOpen, setIsWhatsAppCallOpen] = useState<boolean>(false);
   const [whatsAppCallLink, setWhatsAppCallLink] = useState<string>(() => localStorage.getItem(STORAGE_KEY_WHATSAPP_CALL) || '');
+  const [isOnlineRoomOpen, setIsOnlineRoomOpen] = useState(false);
+  const [onlineRoomCode, setOnlineRoomCode] = useState('');
+  const [onlineMembers, setOnlineMembers] = useState<RoomMember[]>([]);
+
+  const onlinePlayerId = (() => {
+    const existing = localStorage.getItem(STORAGE_KEY_ONLINE_PLAYER);
+    if (existing) return existing;
+    const created = crypto.randomUUID();
+    localStorage.setItem(STORAGE_KEY_ONLINE_PLAYER, created);
+    return created;
+  })();
+
+  const connectOnlineRoom = async (code: string, displayName: string, isHost: boolean) => {
+    await joinOnlineRoom({ code, member: { id: onlinePlayerId, name: displayName }, onEvent: () => {}, onPresence: setOnlineMembers });
+    setOnlineRoomCode(code);
+  };
+
+  const disconnectOnlineRoom = async () => {
+    await leaveOnlineRoom();
+    setOnlineRoomCode('');
+    setOnlineMembers([]);
+  };
 
   const saveWhatsAppCallLink = (link: string) => {
     setWhatsAppCallLink(link);
@@ -195,6 +220,7 @@ export default function App() {
         onGoHome={() => setGameState('SELECT_MODE')}
         onOpenCardManager={() => setIsCardManagerOpen(true)}
         onOpenWhatsAppCall={() => setIsWhatsAppCallOpen(true)}
+        onOpenOnlineRoom={() => setIsOnlineRoomOpen(true)}
       />
 
       {/* Main Grid */}
@@ -296,6 +322,16 @@ export default function App() {
         onClose={() => setIsWhatsAppCallOpen(false)}
         callLink={whatsAppCallLink}
         onSaveCallLink={saveWhatsAppCallLink}
+      />
+
+      <OnlineRoomModal
+        isOpen={isOnlineRoomOpen}
+        onClose={() => setIsOnlineRoomOpen(false)}
+        connected={Boolean(onlineRoomCode)}
+        roomCode={onlineRoomCode}
+        members={onlineMembers}
+        onConnect={connectOnlineRoom}
+        onLeave={disconnectOnlineRoom}
       />
 
       {/* Empty Pool Options Modal */}

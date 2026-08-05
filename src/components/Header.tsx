@@ -1,5 +1,5 @@
 import React from 'react';
-import { Volume2, VolumeX, Home, Sliders, MessageCircle } from 'lucide-react';
+import { Volume2, VolumeX, Home, Sliders, MessageCircle, Radio } from 'lucide-react';
 import { GameMode, GameState, Player } from '../types';
 import { sound } from '../utils/sound';
 
@@ -12,6 +12,7 @@ interface HeaderProps {
   onGoHome: () => void;
   onOpenCardManager?: () => void;
   onOpenWhatsAppCall?: () => void;
+  onOpenOnlineRoom?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -23,6 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
   onGoHome,
   onOpenCardManager,
   onOpenWhatsAppCall,
+  onOpenOnlineRoom,
 }) => {
   const toggleSound = () => {
     const next = !soundEnabled;
@@ -95,6 +97,13 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <MessageCircle className="h-4 w-4 text-emerald-400" />
               <span className="hidden sm:inline">Appel WhatsApp</span>
+            </button>
+          )}
+
+          {onOpenOnlineRoom && (
+            <button type="button" onClick={() => { sound.playClick(); onOpenOnlineRoom(); }} className="flex items-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/15 px-3 py-2 text-xs font-bold text-cyan-200 transition-all hover:bg-cyan-500/25 active:scale-95" title="Créer ou rejoindre une salle en ligne">
+              <Radio className="h-4 w-4 text-cyan-300" />
+              <span className="hidden sm:inline">Jouer en ligne</span>
             </button>
           )}
 
