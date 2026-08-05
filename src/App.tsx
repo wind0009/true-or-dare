@@ -144,6 +144,22 @@ export default function App() {
     if (onlineRoomCode && onlineIsHost) sendRoomEvent({ type: 'game-state', payload: { players } });
   }, [onlineRoomCode, onlineIsHost, players]);
 
+  // A late joiner receives the exact current board, not just the list of names.
+  useEffect(() => {
+    if (!onlineRoomCode || !onlineIsHost) return;
+    sendRoomEvent({
+      type: 'session-state',
+      payload: {
+        players,
+        gameState,
+        selectedPlayer,
+        currentCard,
+        selectedMode,
+        intensity,
+      },
+    });
+  }, [onlineRoomCode, onlineIsHost, players, gameState, selectedPlayer, currentCard, selectedMode, intensity]);
+
   const handleOnlineSpin = (player: Player) => {
     if (onlineRoomCode && onlineIsHost) sendRoomEvent({ type: 'spin', payload: { winnerId: player.id } });
   };
@@ -291,6 +307,15 @@ export default function App() {
     onlineEventHandlerRef.current = (event) => {
       if (event.type === 'game-state' && !onlineIsHost && event.payload?.players) {
         setPlayers(event.payload.players);
+        return;
+      }
+      if (event.type === 'session-state' && !onlineIsHost && event.payload?.players) {
+        setPlayers(event.payload.players);
+        if (event.payload.selectedMode) setSelectedMode(event.payload.selectedMode as GameMode);
+        if (event.payload.intensity) setIntensity(event.payload.intensity as IntensityLevel);
+        setSelectedPlayer((event.payload.selectedPlayer as Player | null) || null);
+        setCurrentCard((event.payload.currentCard as CardItem | null) || null);
+        if (event.payload.gameState) setGameState(event.payload.gameState as GameState);
         return;
       }
       if (event.type === 'spin' && !onlineIsHost && event.payload?.winnerId) {

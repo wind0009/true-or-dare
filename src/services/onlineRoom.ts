@@ -6,7 +6,7 @@ const supabase = createClient(
 );
 
 export type OnlineRoomEvent = {
-  type: 'request-state' | 'game-state' | 'spin' | 'choose-type' | 'card' | 'round-result' | 'next-turn';
+  type: 'request-state' | 'game-state' | 'session-state' | 'spin' | 'choose-type' | 'card' | 'round-result' | 'next-turn';
   payload?: any;
 };
 
