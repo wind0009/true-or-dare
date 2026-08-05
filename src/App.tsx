@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Header } from './components/Header';
 import { PlayerSetup } from './components/PlayerSetup';
 import { ModeSelector } from './components/ModeSelector';
@@ -9,7 +9,7 @@ import { PlayersSidebar } from './components/PlayersSidebar';
 import { CardManagerModal } from './components/CardManagerModal';
 import { WhatsAppCallModal } from './components/WhatsAppCallModal';
 import { OnlineRoomModal } from './components/OnlineRoomModal';
-import { joinOnlineRoom, leaveOnlineRoom, RoomMember, sendRoomEvent } from './services/onlineRoom';
+import { joinOnlineRoom, leaveOnlineRoom, OnlineRoomEvent, RoomMember, sendRoomEvent } from './services/onlineRoom';
 
 import { CardItem, CardType, GameMode, GameState, IntensityLevel, Player } from './types';
 import { GAME_MODES } from './data/questions';
@@ -77,6 +77,17 @@ export default function App() {
   const [onlineMembers, setOnlineMembers] = useState<RoomMember[]>([]);
   const [onlineIsHost, setOnlineIsHost] = useState(false);
   const [remoteSpin, setRemoteSpin] = useState<{ winnerId: string; nonce: number } | null>(null);
+  const playersRef = useRef(players);
+  const selectedPlayerRef = useRef<Player | null>(selectedPlayer);
+  const onlineEventHandlerRef = useRef<(event: OnlineRoomEvent) => void>(() => {});
+
+  useEffect(() => {
+    playersRef.current = players;
+  }, [players]);
+
+  useEffect(() => {
+    selectedPlayerRef.current = selectedPlayer;
+  }, [selectedPlayer]);
 
   const onlinePlayerId = (() => {
     const existing = localStorage.getItem(STORAGE_KEY_ONLINE_PLAYER);
@@ -90,11 +101,7 @@ export default function App() {
     await joinOnlineRoom({
       code,
       member: { id: onlinePlayerId, name: displayName },
-      onEvent: (event) => {
-        if (event.type === 'game-state' && !isHost && event.payload?.players) setPlayers(event.payload.players);
-        if (event.type === 'spin' && !isHost && event.payload?.winnerId) setRemoteSpin({ winnerId: event.payload.winnerId, nonce: Date.now() });
-        if (event.type === 'request-state' && isHost) sendRoomEvent({ type: 'game-state', payload: { players } });
-      },
+      onEvent: (event) => onlineEventHandlerRef.current(event),
       onPresence: (members) => {
         // The room members are the only names eligible for the online wheel.
         // Sorting by id gives every device the same wheel order and colors.
@@ -117,7 +124,7 @@ export default function App() {
     });
     setOnlineRoomCode(code);
     setOnlineIsHost(isHost);
-    if (isHost) await sendRoomEvent({ type: 'game-state', payload: { players } });
+    if (isHost) await sendRoomEvent({ type: 'game-state', payload: { players: playersRef.current } });
     else await sendRoomEvent({ type: 'request-state' });
   };
 
@@ -152,7 +159,7 @@ export default function App() {
   };
 
   // Get Card from engine with anti-repetition & weighted selection
-  const handleChooseType = (type: CardType) => {
+  const handleChooseType = (type: CardType, broadcastToRoom = false) => {
     if (!selectedPlayer) return;
 
     setEmptyPoolType(type);
@@ -185,14 +192,27 @@ export default function App() {
         setLastTags(res.card.tags.map((t) => t.toLowerCase()));
       }
       setGameState('CARD_DISPLAYED');
+      if (broadcastToRoom && onlineRoomCode) {
+        sendRoomEvent({ type: 'card', payload: { playerId: selectedPlayer.id, card: res.card } });
+      }
     } else {
       // No cards remaining in current configuration
       setShowEmptyPoolOptions(true);
     }
   };
 
+  const requestChooseType = (type: CardType) => {
+    if (!onlineRoomCode) {
+      handleChooseType(type);
+      return;
+    }
+    if (!selectedPlayer || selectedPlayer.id !== onlinePlayerId) return;
+    if (onlineIsHost) handleChooseType(type, true);
+    else sendRoomEvent({ type: 'choose-type', payload: { type, playerId: selectedPlayer.id } });
+  };
+
   // Complete Challenge
-  const handleCompleteChallenge = () => {
+  const handleCompleteChallenge = (broadcastToRoom = false) => {
     if (selectedPlayer) {
       setPlayers((prev) =>
         prev.map((p) => {
@@ -212,6 +232,17 @@ export default function App() {
     setGameState('SPINNING');
     setSelectedPlayer(null);
     setCurrentCard(null);
+    if (broadcastToRoom && onlineRoomCode) sendRoomEvent({ type: 'next-turn' });
+  };
+
+  const requestCompleteChallenge = () => {
+    if (!onlineRoomCode) {
+      handleCompleteChallenge();
+      return;
+    }
+    if (!selectedPlayer || selectedPlayer.id !== onlinePlayerId) return;
+    if (onlineIsHost) handleCompleteChallenge(true);
+    else sendRoomEvent({ type: 'round-result', payload: { playerId: selectedPlayer.id } });
   };
 
   // Pass Challenge
@@ -250,6 +281,50 @@ export default function App() {
     setShowEmptyPoolOptions(false);
     handleChooseType(emptyPoolType);
   };
+
+  // All game decisions in an online room go through the host, then are broadcast back.
+  useEffect(() => {
+    onlineEventHandlerRef.current = (event) => {
+      if (event.type === 'game-state' && !onlineIsHost && event.payload?.players) {
+        setPlayers(event.payload.players);
+        return;
+      }
+      if (event.type === 'spin' && !onlineIsHost && event.payload?.winnerId) {
+        setRemoteSpin({ winnerId: event.payload.winnerId, nonce: Date.now() });
+        return;
+      }
+      if (event.type === 'request-state' && onlineIsHost) {
+        sendRoomEvent({ type: 'game-state', payload: { players: playersRef.current } });
+        return;
+      }
+      if (event.type === 'choose-type' && onlineIsHost) {
+        const activePlayer = selectedPlayerRef.current;
+        if (activePlayer?.id === event.payload?.playerId && event.payload?.type) {
+          handleChooseType(event.payload.type as CardType, true);
+        }
+        return;
+      }
+      if (event.type === 'card' && !onlineIsHost && event.payload?.card && event.payload?.playerId) {
+        const activePlayer = playersRef.current.find((player) => player.id === event.payload.playerId);
+        if (activePlayer) {
+          setSelectedPlayer(activePlayer);
+          setCurrentCard(event.payload.card as CardItem);
+          setGameState('CARD_DISPLAYED');
+        }
+        return;
+      }
+      if (event.type === 'round-result' && onlineIsHost) {
+        const activePlayer = selectedPlayerRef.current;
+        if (activePlayer?.id === event.payload?.playerId) handleCompleteChallenge(true);
+        return;
+      }
+      if (event.type === 'next-turn' && !onlineIsHost) {
+        setGameState('SPINNING');
+        setSelectedPlayer(null);
+        setCurrentCard(null);
+      }
+    };
+  }, [onlineIsHost, onlineRoomCode, handleChooseType]);
 
   return (
     <div className="min-h-screen bg-[#160b2b] text-slate-100 flex flex-col font-sans selection:bg-rose-500 selection:text-white">
@@ -324,7 +399,8 @@ export default function App() {
               {gameState === 'CHOOSING_CARD' && selectedPlayer && (
                 <ActionVeriteChoice
                   player={selectedPlayer}
-                  onChooseType={handleChooseType}
+                  onChooseType={requestChooseType}
+                  disabled={Boolean(onlineRoomCode && selectedPlayer.id !== onlinePlayerId)}
                 />
               )}
 
@@ -333,9 +409,10 @@ export default function App() {
                 <ChallengeCard
                   player={selectedPlayer}
                   card={currentCard}
-                  onComplete={handleCompleteChallenge}
+                  onComplete={requestCompleteChallenge}
                   onPass={handlePassChallenge}
                   onSwapCard={handleSwapCard}
+                  canComplete={!onlineRoomCode || selectedPlayer.id === onlinePlayerId}
                 />
               )}
 

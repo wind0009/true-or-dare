@@ -7,12 +7,14 @@ interface ActionVeriteChoiceProps {
   player: Player;
   onChooseType: (type: CardType) => void;
   isLoadingAI?: boolean;
+  disabled?: boolean;
 }
 
 export const ActionVeriteChoice: React.FC<ActionVeriteChoiceProps> = ({
   player,
   onChooseType,
   isLoadingAI = false,
+  disabled = false,
 }) => {
   return (
     <div className="w-full max-w-lg mx-auto bg-[#1b1137] border-2 border-purple-500/30 rounded-3xl p-5 sm:p-7 text-white shadow-2xl flex flex-col justify-between min-h-[500px] sm:min-h-[540px] relative overflow-hidden animate-in fade-in zoom-in-95 duration-300">
@@ -40,7 +42,7 @@ export const ActionVeriteChoice: React.FC<ActionVeriteChoiceProps> = ({
         {/* VÉRITÉ CARD (Pink / Rose / Neon) */}
         <button
           type="button"
-          disabled={isLoadingAI}
+          disabled={isLoadingAI || disabled}
           onClick={() => {
             sound.playClick();
             onChooseType('truth');
@@ -79,7 +81,7 @@ export const ActionVeriteChoice: React.FC<ActionVeriteChoiceProps> = ({
         {/* ACTION CARD (Cyan / Electric Blue / Gold) */}
         <button
           type="button"
-          disabled={isLoadingAI}
+          disabled={isLoadingAI || disabled}
           onClick={() => {
             sound.playClick();
             onChooseType('dare');
@@ -121,12 +123,10 @@ export const ActionVeriteChoice: React.FC<ActionVeriteChoiceProps> = ({
       <div className="relative z-10 text-center pt-2">
         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center justify-center gap-1.5">
           <span>⚡</span>
-          <span>Sélectionne une option pour piocher une carte</span>
+          <span>{disabled ? `On attend le choix de ${player.name}` : 'Sélectionne une option pour piocher une carte'}</span>
         </p>
       </div>
 
     </div>
   );
 };
-
-

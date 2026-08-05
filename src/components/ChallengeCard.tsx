@@ -11,12 +11,14 @@ interface ChallengeCardProps {
   onPass?: () => void;
   onSwapCard?: () => void;
   onReportCard?: (cardId: string | number) => void;
+  canComplete?: boolean;
 }
 
 export const ChallengeCard: React.FC<ChallengeCardProps> = ({
   player,
   card,
   onComplete,
+  canComplete = true,
 }) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const isTruth = card.type === 'truth';
@@ -67,6 +69,7 @@ export const ChallengeCard: React.FC<ChallengeCardProps> = ({
   }, [card.id, card.text, player.name]);
 
   const handleCompleteAction = () => {
+    if (!canComplete) return;
     stopSpeech();
     sound.playSuccess();
     try {
@@ -103,7 +106,7 @@ export const ChallengeCard: React.FC<ChallengeCardProps> = ({
           isTruth
             ? 'bg-gradient-to-br from-[#d92662] via-[#ae315d] to-[#7a0d33] border-pink-400/40 hover:border-pink-300'
             : 'bg-gradient-to-br from-[#0284c7] via-[#0369a1] to-[#0c4a6e] border-cyan-400/40 hover:border-cyan-300'
-        } border-2 p-5 sm:p-7 text-left shadow-2xl flex flex-col justify-between my-2 cursor-pointer transition-all hover:scale-[1.01] active:scale-[0.99]`}
+        } border-2 p-5 sm:p-7 text-left shadow-2xl flex flex-col justify-between my-2 transition-all ${canComplete ? 'cursor-pointer hover:scale-[1.01] active:scale-[0.99]' : 'cursor-default'}`}
       >
         {/* Card Header Tag & Audio Button */}
         <div className="flex items-center justify-between mb-3 z-10 gap-2 flex-wrap">
@@ -188,6 +191,5 @@ export const ChallengeCard: React.FC<ChallengeCardProps> = ({
     </div>
   );
 };
-
 
 
